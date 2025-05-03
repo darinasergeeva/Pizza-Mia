@@ -89,11 +89,11 @@ public partial class AppContext : DbContext
                 .HasPrecision(10, 2)
                 .HasColumnName("quantity");
 
-            entity.HasOne(d => d.IdIngredientNavigation).WithMany(p => p.Deliveries)
+            entity.HasOne(d => d.Ingredient).WithMany(p => p.Deliveries)
                 .HasForeignKey(d => d.IdIngredient)
                 .HasConstraintName("deliveries_id_ingredient_fkey");
 
-            entity.HasOne(d => d.IdSupplierNavigation).WithMany(p => p.Deliveries)
+            entity.HasOne(d => d.Supplier).WithMany(p => p.Deliveries)
                 .HasForeignKey(d => d.IdSupplier)
                 .HasConstraintName("deliveries_id_supplier_fkey");
         });
@@ -116,7 +116,7 @@ public partial class AppContext : DbContext
                 .HasColumnName("price");
             entity.Property(e => e.СookingTime).HasColumnName("сooking_time");
 
-            entity.HasOne(d => d.IdCategoryNavigation).WithMany(p => p.Dishes)
+            entity.HasOne(d => d.CategoriesDish).WithMany(p => p.Dishes)
                 .HasForeignKey(d => d.IdCategory)
                 .HasConstraintName("fk_categories_dishes");
         });
@@ -133,12 +133,12 @@ public partial class AppContext : DbContext
                 .HasPrecision(10, 2)
                 .HasColumnName("amount");
 
-            entity.HasOne(d => d.IdDishNavigation).WithMany(p => p.DishIgredients)
+            entity.HasOne(d => d.Dish).WithMany(p => p.DishIgredients)
                 .HasForeignKey(d => d.IdDish)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("dish_igredients_id_dish_fkey");
 
-            entity.HasOne(d => d.IdIngredientNavigation).WithMany(p => p.DishIgredients)
+            entity.HasOne(d => d.Ingredient).WithMany(p => p.DishIgredients)
                 .HasForeignKey(d => d.IdIngredient)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("dish_igredients_id_ingredient_fkey");
@@ -176,7 +176,7 @@ public partial class AppContext : DbContext
                 .HasPrecision(10, 2)
                 .HasColumnName("total_amount");
 
-            entity.HasOne(d => d.IdCustomerNavigation).WithMany(p => p.Orders)
+            entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdCustomer)
                 .HasConstraintName("orders_id_customer_fkey");
         });

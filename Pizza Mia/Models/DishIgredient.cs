@@ -11,7 +11,7 @@ public partial class DishIgredient
 
     public decimal? Amount { get; set; }
 
-    public virtual Dish IdDishNavigation { get; set; } = null!;
+    public virtual Dish Dish { get; set; } = null!;
 
     public virtual Ingredient Ingredient { get; set; } = null!;
 }
