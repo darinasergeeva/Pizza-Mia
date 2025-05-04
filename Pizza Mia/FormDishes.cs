@@ -15,7 +15,7 @@ namespace Pizza_Mia
             base.OnLoad(e);
             this.db = new AppContext();
             this.db.Dishes.Load();
-            this.dataGridViewDishes.DataSource = this.db.Dishes.Local.OrderBy(o=>o.Name).ToList();
+            this.dataGridViewDishes.DataSource = this.db.Dishes.Local.OrderBy(o => o.Name).ToList();
             dataGridViewDishes.Columns["Id"].Visible = false;
             dataGridViewDishes.Columns["DishIgredients"].Visible = false;
             dataGridViewDishes.Columns["CategoriesDish"].Visible = false;
@@ -29,6 +29,11 @@ namespace Pizza_Mia
         }
 
         private void FormDishes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
 
         }

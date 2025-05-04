@@ -62,6 +62,7 @@
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Добавить";
             buttonAdd.UseVisualStyleBackColor = false;
+            buttonAdd.Click += ButtonAdd_Click;
             // 
             // buttonUpdate
             // 
