@@ -215,7 +215,6 @@
             Controls.Add(flowLayoutPanelBotton);
             Name = "FormAdd";
             Text = "FormAdd";
-            Load += FormAdd_Load;
             flowLayoutPanelFill.ResumeLayout(false);
             flowLayoutPanelFill.PerformLayout();
             flowLayoutPanelBotton.ResumeLayout(false);
