@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Pizza_Mia.Models; // Убедитесь, что это правильное пространство имен
+using Pizza_Mia.Models;
 
 namespace Pizza_Mia
 {
@@ -22,7 +22,7 @@ namespace Pizza_Mia
 
         private void LoadDishCategories()
         {
-            using (var db = new Pizza_Mia.Models.AppContext()) // Указываем полное имя
+            using (var db = new Pizza_Mia.Models.AppContext()) 
             {
                 var categories = db.CategoriesDishes
                     .Select(c => new { c.Id, c.Name })
