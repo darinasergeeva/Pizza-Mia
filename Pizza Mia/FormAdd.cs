@@ -7,6 +7,7 @@ namespace Pizza_Mia
 {
     public partial class FormAdd : Form
     {
+
         public string DishName => textBoxNameDish.Text;
         public string DishDescription => textBoxDescriptionOfTheDish.Text;
         public decimal DishPrice => decimal.TryParse(textBoxThePriceOfTheDish.Text, out var price) ? price : 0;
@@ -49,6 +50,19 @@ namespace Pizza_Mia
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+        public FormAdd(Dish dishToEdit) : this() // Вызываем основной конструктор
+        {
+            textBoxNameDish.Text = dishToEdit.Name;
+            textBoxDescriptionOfTheDish.Text = dishToEdit.Description ?? string.Empty;
+            textBoxThePriceOfTheDish.Text = dishToEdit.Price?.ToString() ?? "";
+            textBoxCookingTime.Text = dishToEdit.СookingTime.ToString();
+            textBoxPhotoOfTheDish.Text = dishToEdit.Photo;
+
+            if (dishToEdit.IdCategory != null)
+                comboBoxDishСategory.SelectedValue = dishToEdit.IdCategory;
+            else
+                comboBoxDishСategory.SelectedIndex = -1;
         }
     }
 }

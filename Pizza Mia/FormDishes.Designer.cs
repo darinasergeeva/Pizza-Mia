@@ -73,6 +73,7 @@
             buttonUpdate.TabIndex = 1;
             buttonUpdate.Text = "Редактировать";
             buttonUpdate.UseVisualStyleBackColor = false;
+            buttonUpdate.Click += ButtonUpdate_Click;
             // 
             // buttonDelete
             // 
@@ -83,6 +84,7 @@
             buttonDelete.TabIndex = 2;
             buttonDelete.Text = "Удалить";
             buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += ButtonDelete_Click;
             // 
             // flowLayoutPanelFill
             // 

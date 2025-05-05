@@ -11,47 +11,15 @@ namespace Pizza_Mia
         {
             InitializeComponent();
         }
-        //protected override void OnLoad(EventArgs e)
-        //{
-        //    base.OnLoad(e);
-        //    this.db = new AppContext();
-
-        //    // Загрузить блюда вместе с категориями
-        //    this.db.Dishes.Include(d => d.CategoriesDish).Load();
-
-        //    // Проецируем в анонимный тип для DataGridView
-        //    var dishesList = this.db.Dishes.Local
-        //        .Select(d => new
-        //        {
-        //            d.Id,
-        //            d.Name,
-        //            CategoryName = d.CategoriesDish != null ? d.CategoriesDish.Name : "", 
-        //            d.Description,
-        //            d.Price,
-        //            d.СookingTime,
-        //            d.Photo
-        //        })
-        //        .OrderBy(d => d.Name)
-        //        .ToList();
-
-        //    dataGridViewDishes.DataSource = dishesList;
-
-        //    dataGridViewDishes.Columns["Id"].Visible = false;
-
-        //    // Переименовываем заголовки столбцов
-        //    dataGridViewDishes.Columns["Name"].HeaderText = "Наименование блюда";
-        //    dataGridViewDishes.Columns["CategoryName"].HeaderText = "Категория блюда";
-        //    dataGridViewDishes.Columns["Description"].HeaderText = "Описание блюда";
-        //    dataGridViewDishes.Columns["Price"].HeaderText = "Цена блюда(р)";
-        //    dataGridViewDishes.Columns["СookingTime"].HeaderText = "Время приготовления (мин)";
-        //    dataGridViewDishes.Columns["Photo"].HeaderText = "Фотография блюда";
-        //}
         protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             db = new AppContext();
 
             await UpdateDishesListAsync();
+
+            dataGridViewDishes.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridViewDishes.DefaultCellStyle.SelectionForeColor = Color.White;
         }
 
         private void FormDishes_Load(object sender, EventArgs e)
@@ -124,6 +92,56 @@ namespace Pizza_Mia
             {
                 MessageBox.Show($"Ошибка при обновлении списка блюд: {ex.Message}");
             }
+        }
+
+        private async void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewDishes.SelectedRows.Count > 0)
+            {
+                int selectedDishId = (int)dataGridViewDishes.SelectedRows[0].Cells["Id"].Value;
+
+                var dishToEdit = await db.Dishes
+                    .Include(d => d.CategoriesDish)
+                    .FirstOrDefaultAsync(d => d.Id == selectedDishId);
+
+                if (dishToEdit != null)
+                {
+                    using (FormAdd formAdd = new FormAdd(dishToEdit)) 
+                    {
+                        if (formAdd.ShowDialog(this) == DialogResult.OK)
+                        {
+                            try
+                            {
+                                // Обновляем свойства блюда
+                                dishToEdit.Name = formAdd.DishName;
+                                dishToEdit.Description = formAdd.DishDescription;
+                                dishToEdit.Price = formAdd.DishPrice;
+                                dishToEdit.СookingTime = formAdd.CookingTime;
+                                dishToEdit.Photo = formAdd.PhotoPath;
+                                dishToEdit.IdCategory = formAdd.DishCategoryId;
+
+                                await db.SaveChangesAsync();
+                                await UpdateDishesListAsync(); 
+
+                                MessageBox.Show("Блюдо обновлено!");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Ошибка при обновлении блюда: {ex.Message}");
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите блюдо для редактирования.");
+            }
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
