@@ -14,10 +14,11 @@ namespace Pizza_Mia
         protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            db = new AppContext();
+            db = new AppContext(); // Инициализируем контекст базы данных
 
-            await UpdateDishesListAsync();
+            await UpdateDishesListAsync(); // Загружаем список блюд асинхронно
 
+            // Настраиваем цвет выделения строк в DataGridView
             dataGridViewDishes.DefaultCellStyle.SelectionBackColor = Color.Pink;
             dataGridViewDishes.DefaultCellStyle.SelectionForeColor = Color.White;
         }
@@ -29,12 +30,14 @@ namespace Pizza_Mia
 
         private async void ButtonAdd_Click(object sender, EventArgs e)
         {
+            // Создаем экземпляр формы для добавления блюда
             using (FormAdd formAdd = new FormAdd())
             {
                 if (formAdd.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
+                        // Создаем новый объект блюда и заполняем его данными из формы
                         Dish newDish = new Dish
                         {
                             Name = formAdd.DishName,
@@ -45,12 +48,12 @@ namespace Pizza_Mia
                             IdCategory = formAdd.DishCategoryId
                         };
 
-                        db.Dishes.Add(newDish);
-                        await db.SaveChangesAsync();
+                        db.Dishes.Add(newDish); // Добавляем новое блюдо в контекст
+                        await db.SaveChangesAsync(); // Сохраняем изменения в базе данных
 
-                        await UpdateDishesListAsync();
+                        await UpdateDishesListAsync(); // Обновляем список блюд
 
-                        MessageBox.Show("Новое блюдо добавлено!");
+                        MessageBox.Show("Новое блюдо добавлено!"); 
                     }
                     catch (Exception ex)
                     {
@@ -63,6 +66,7 @@ namespace Pizza_Mia
         {
             try
             {
+                // Загружаем блюда из базы данных с категориями и проецируем в анонимный тип
                 var dishesList = await db.Dishes
                     .Include(d => d.CategoriesDish)
                     .Select(d => new
@@ -75,10 +79,10 @@ namespace Pizza_Mia
                         d.СookingTime,
                         d.Photo
                     })
-                    .OrderBy(d => d.Name)
-                    .ToListAsync();
+                    .OrderBy(d => d.Name) // Сортируем по имени блюда
+                    .ToListAsync(); // Преобразуем в список асинхронно
 
-                dataGridViewDishes.DataSource = dishesList;
+                dataGridViewDishes.DataSource = dishesList; // Устанавливаем источник данных для DataGridView
 
                 dataGridViewDishes.Columns["Id"].Visible = false;
                 dataGridViewDishes.Columns["Name"].HeaderText = "Наименование блюда";
@@ -96,52 +100,91 @@ namespace Pizza_Mia
 
         private async void ButtonUpdate_Click(object sender, EventArgs e)
         {
-            if (dataGridViewDishes.SelectedRows.Count > 0)
+            if (dataGridViewDishes.SelectedRows.Count > 0) // Проверяем, выбрана ли строка
             {
-                int selectedDishId = (int)dataGridViewDishes.SelectedRows[0].Cells["Id"].Value;
+                int selectedDishId = (int)dataGridViewDishes.SelectedRows[0].Cells["Id"].Value; // Получаем Id выбранного блюда
 
-                var dishToEdit = await db.Dishes
+                var dishToEdit = await db.Dishes // Загружаем блюдо из базы с подгрузкой категории
                     .Include(d => d.CategoriesDish)
                     .FirstOrDefaultAsync(d => d.Id == selectedDishId);
 
-                if (dishToEdit != null)
+                if (dishToEdit != null) // Проверяем, что блюдо найдено
                 {
-                    using (FormAdd formAdd = new FormAdd(dishToEdit)) 
                     {
-                        if (formAdd.ShowDialog(this) == DialogResult.OK)
+                        using (FormAdd formAdd = new FormAdd(dishToEdit))  // Открываем форму добавления/редактирования, передавая выбранное блюдо
                         {
-                            try
+                            if (formAdd.ShowDialog(this) == DialogResult.OK)
                             {
-                                // Обновляем свойства блюда
-                                dishToEdit.Name = formAdd.DishName;
-                                dishToEdit.Description = formAdd.DishDescription;
-                                dishToEdit.Price = formAdd.DishPrice;
-                                dishToEdit.СookingTime = formAdd.CookingTime;
-                                dishToEdit.Photo = formAdd.PhotoPath;
-                                dishToEdit.IdCategory = formAdd.DishCategoryId;
+                                try
+                                {
+                                    // Обновляем свойства блюда
+                                    dishToEdit.Name = formAdd.DishName;
+                                    dishToEdit.Description = formAdd.DishDescription;
+                                    dishToEdit.Price = formAdd.DishPrice;
+                                    dishToEdit.СookingTime = formAdd.CookingTime;
+                                    dishToEdit.Photo = formAdd.PhotoPath;
+                                    dishToEdit.IdCategory = formAdd.DishCategoryId;
 
-                                await db.SaveChangesAsync();
-                                await UpdateDishesListAsync(); 
+                                    await db.SaveChangesAsync(); // Сохраняем изменения в базе данных
+                                    await UpdateDishesListAsync(); // Обновляем список блюд
 
-                                MessageBox.Show("Блюдо обновлено!");
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Ошибка при обновлении блюда: {ex.Message}");
+                                    MessageBox.Show("Блюдо обновлено!");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Ошибка при обновлении блюда: {ex.Message}");
+                                }
                             }
                         }
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста, выберите блюдо для редактирования.");
+                else
+                {
+                    MessageBox.Show("Пожалуйста, выберите блюдо для редактирования.");
+                }
             }
         }
 
-        private void ButtonDelete_Click(object sender, EventArgs e)
+        private async void ButtonDelete_Click(object sender, EventArgs e)
         {
+            if (dataGridViewDishes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите блюдо для удаления.");
+                return;
+            }
 
+            // Получаем Id выбранного блюда
+            int dishId = (int)dataGridViewDishes.SelectedRows[0].Cells["Id"].Value;
+
+            // Подтверждение удаления
+            var confirmResult = MessageBox.Show($"Вы уверены, что хотите удалить выбранное блюдо?",
+                                                "Подтверждение удаления",
+                                                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    var dishToDelete = await db.Dishes.FindAsync(dishId); // Находим блюдо по Id
+                    if (dishToDelete != null) 
+                    {
+                        db.Dishes.Remove(dishToDelete); // Удаляем блюдо из контекста
+                        await db.SaveChangesAsync(); // Сохраняем изменения в базе данных
+
+                        await UpdateDishesListAsync(); // Обновляем список блюд
+
+                        MessageBox.Show("Блюдо успешно удалено.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: блюдо не найдено.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении блюда: {ex.Message}");
+                }
+            }
         }
     }
 }
