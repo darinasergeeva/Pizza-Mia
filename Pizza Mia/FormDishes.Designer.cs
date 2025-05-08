@@ -32,16 +32,14 @@
             buttonAdd = new Button();
             buttonUpdate = new Button();
             buttonDelete = new Button();
-            flowLayoutPanelFill = new FlowLayoutPanel();
-            dataGridViewDishes = new DataGridView();
+            flowLayoutPanelDishes = new FlowLayoutPanel();
             flowLayoutPanelTop.SuspendLayout();
-            flowLayoutPanelFill.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDishes).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanelTop
             // 
             flowLayoutPanelTop.AutoSize = true;
+            flowLayoutPanelTop.BackColor = Color.PowderBlue;
             flowLayoutPanelTop.Controls.Add(buttonAdd);
             flowLayoutPanelTop.Controls.Add(buttonUpdate);
             flowLayoutPanelTop.Controls.Add(buttonDelete);
@@ -55,7 +53,7 @@
             // 
             // buttonAdd
             // 
-            buttonAdd.BackColor = Color.White;
+            buttonAdd.BackColor = Color.LightCyan;
             buttonAdd.Location = new Point(13, 13);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(150, 35);
@@ -66,7 +64,7 @@
             // 
             // buttonUpdate
             // 
-            buttonUpdate.BackColor = Color.White;
+            buttonUpdate.BackColor = Color.LightCyan;
             buttonUpdate.Location = new Point(169, 13);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(150, 35);
@@ -77,7 +75,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.BackColor = Color.White;
+            buttonDelete.BackColor = Color.LightCyan;
             buttonDelete.Location = new Point(325, 13);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(150, 35);
@@ -86,32 +84,18 @@
             buttonDelete.UseVisualStyleBackColor = false;
             buttonDelete.Click += ButtonDelete_Click;
             // 
-            // flowLayoutPanelFill
+            // flowLayoutPanelDishes
             // 
-            flowLayoutPanelFill.AutoSize = true;
-            flowLayoutPanelFill.Controls.Add(dataGridViewDishes);
-            flowLayoutPanelFill.Dock = DockStyle.Fill;
-            flowLayoutPanelFill.Location = new Point(0, 61);
-            flowLayoutPanelFill.Margin = new Padding(0);
-            flowLayoutPanelFill.Name = "flowLayoutPanelFill";
-            flowLayoutPanelFill.Padding = new Padding(10);
-            flowLayoutPanelFill.Size = new Size(1684, 761);
-            flowLayoutPanelFill.TabIndex = 1;
-            // 
-            // dataGridViewDishes
-            // 
-            dataGridViewDishes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewDishes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewDishes.BackgroundColor = Color.White;
-            dataGridViewDishes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDishes.Location = new Point(10, 10);
-            dataGridViewDishes.Margin = new Padding(0);
-            dataGridViewDishes.MultiSelect = false;
-            dataGridViewDishes.Name = "dataGridViewDishes";
-            dataGridViewDishes.ReadOnly = true;
-            dataGridViewDishes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewDishes.Size = new Size(1665, 723);
-            dataGridViewDishes.TabIndex = 0;
+            flowLayoutPanelDishes.AutoScroll = true;
+            flowLayoutPanelDishes.AutoSize = true;
+            flowLayoutPanelDishes.BackColor = Color.Azure;
+            flowLayoutPanelDishes.Dock = DockStyle.Fill;
+            flowLayoutPanelDishes.Location = new Point(0, 61);
+            flowLayoutPanelDishes.Margin = new Padding(0);
+            flowLayoutPanelDishes.Name = "flowLayoutPanelDishes";
+            flowLayoutPanelDishes.Padding = new Padding(10);
+            flowLayoutPanelDishes.Size = new Size(1684, 761);
+            flowLayoutPanelDishes.TabIndex = 1;
             // 
             // FormDishes
             // 
@@ -119,16 +103,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1684, 822);
-            Controls.Add(flowLayoutPanelFill);
+            Controls.Add(flowLayoutPanelDishes);
             Controls.Add(flowLayoutPanelTop);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5);
             Name = "FormDishes";
             Text = "Меню";
-            Load += FormDishes_Load;
             flowLayoutPanelTop.ResumeLayout(false);
-            flowLayoutPanelFill.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDishes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -139,7 +120,6 @@
         private Button buttonAdd;
         private Button buttonUpdate;
         private Button buttonDelete;
-        private FlowLayoutPanel flowLayoutPanelFill;
-        private DataGridView dataGridViewDishes;
+        private FlowLayoutPanel flowLayoutPanelDishes;
     }
 }
