@@ -63,9 +63,19 @@ namespace Pizza_Mia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pizza_mia {
+        internal static System.Drawing.Bitmap pizza_mia1 {
             get {
-                object obj = ResourceManager.GetObject("pizza_mia", resourceCulture);
+                object obj = ResourceManager.GetObject("pizza-mia1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YFouxYbs8wo {
+            get {
+                object obj = ResourceManager.GetObject("YFouxYbs8wo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
