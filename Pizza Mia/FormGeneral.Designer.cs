@@ -70,7 +70,7 @@
             Margin = new Padding(5);
             MaximizeBox = false;
             Name = "FormGeneral";
-            Text = "FormGeneral";
+            Text = "Pizza Mia";
             ResumeLayout(false);
         }
 

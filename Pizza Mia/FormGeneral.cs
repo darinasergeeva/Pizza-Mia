@@ -15,7 +15,8 @@
 
         private void buttonCategoriesOfDishes_Click(object sender, EventArgs e)
         {
-
+            FormСategoriesOfDishes FormСategoriesOfDishes = new FormСategoriesOfDishes();
+            FormСategoriesOfDishes.ShowDialog();
         }
     }
 }
