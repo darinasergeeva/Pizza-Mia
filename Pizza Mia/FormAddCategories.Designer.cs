@@ -49,7 +49,7 @@
             panelFill.Location = new Point(0, 0);
             panelFill.Name = "panelFill";
             panelFill.Padding = new Padding(15);
-            panelFill.Size = new Size(384, 160);
+            panelFill.Size = new Size(368, 160);
             panelFill.TabIndex = 0;
             // 
             // textBoxCategoriesOfDishes
@@ -57,7 +57,7 @@
             textBoxCategoriesOfDishes.Dock = DockStyle.Top;
             textBoxCategoriesOfDishes.Location = new Point(15, 40);
             textBoxCategoriesOfDishes.Name = "textBoxCategoriesOfDishes";
-            textBoxCategoriesOfDishes.Size = new Size(354, 32);
+            textBoxCategoriesOfDishes.Size = new Size(338, 32);
             textBoxCategoriesOfDishes.TabIndex = 1;
             textBoxCategoriesOfDishes.TextChanged += textBoxCategoriesOfDishes_TextChanged;
             textBoxCategoriesOfDishes.Validating += TextBoxCategoriesOfDishes_Validating;
@@ -75,6 +75,7 @@
             // flowLayoutPanelBottm
             // 
             flowLayoutPanelBottm.AutoSize = true;
+            flowLayoutPanelBottm.BackColor = Color.FromArgb(244, 232, 211);
             flowLayoutPanelBottm.Controls.Add(buttonSave);
             flowLayoutPanelBottm.Controls.Add(buttonCancel);
             flowLayoutPanelBottm.Dock = DockStyle.Bottom;
@@ -82,15 +83,15 @@
             flowLayoutPanelBottm.Location = new Point(0, 89);
             flowLayoutPanelBottm.Name = "flowLayoutPanelBottm";
             flowLayoutPanelBottm.Padding = new Padding(15);
-            flowLayoutPanelBottm.Size = new Size(384, 71);
+            flowLayoutPanelBottm.Size = new Size(368, 71);
             flowLayoutPanelBottm.TabIndex = 1;
             // 
             // buttonSave
             // 
             buttonSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonSave.BackColor = Color.White;
+            buttonSave.BackColor = Color.FromArgb(103, 186, 128);
             buttonSave.DialogResult = DialogResult.OK;
-            buttonSave.Location = new Point(201, 18);
+            buttonSave.Location = new Point(185, 18);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(150, 35);
             buttonSave.TabIndex = 0;
@@ -99,9 +100,9 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.BackColor = Color.White;
+            buttonCancel.BackColor = Color.FromArgb(103, 186, 128);
             buttonCancel.DialogResult = DialogResult.Cancel;
-            buttonCancel.Location = new Point(45, 18);
+            buttonCancel.Location = new Point(29, 18);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(150, 35);
             buttonCancel.TabIndex = 1;
@@ -117,7 +118,7 @@
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(384, 160);
+            ClientSize = new Size(368, 160);
             Controls.Add(flowLayoutPanelBottm);
             Controls.Add(panelFill);
             Font = new Font("Segoe UI", 14F);

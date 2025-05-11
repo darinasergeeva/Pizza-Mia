@@ -67,7 +67,7 @@
             flowLayoutPanelFill.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             flowLayoutPanelFill.Location = new Point(0, 0);
             flowLayoutPanelFill.Name = "flowLayoutPanelFill";
-            flowLayoutPanelFill.Padding = new Padding(10, 10, 10, 10);
+            flowLayoutPanelFill.Padding = new Padding(10);
             flowLayoutPanelFill.Size = new Size(360, 419);
             flowLayoutPanelFill.TabIndex = 4;
             // 
@@ -178,7 +178,7 @@
             flowLayoutPanelBotton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             flowLayoutPanelBotton.Location = new Point(0, 419);
             flowLayoutPanelBotton.Name = "flowLayoutPanelBotton";
-            flowLayoutPanelBotton.Padding = new Padding(10, 10, 10, 10);
+            flowLayoutPanelBotton.Padding = new Padding(10);
             flowLayoutPanelBotton.Size = new Size(360, 61);
             flowLayoutPanelBotton.TabIndex = 5;
             // 
@@ -216,7 +216,7 @@
             Font = new Font("Segoe UI", 9F);
             Name = "FormAdd";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormAdd";
+            Text = "Редактор";
             flowLayoutPanelFill.ResumeLayout(false);
             flowLayoutPanelFill.PerformLayout();
             flowLayoutPanelBotton.ResumeLayout(false);

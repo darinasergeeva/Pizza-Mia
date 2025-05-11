@@ -42,6 +42,7 @@
             // flowLayoutPanelTop
             // 
             flowLayoutPanelTop.AutoSize = true;
+            flowLayoutPanelTop.BackColor = Color.FromArgb(244, 232, 211);
             flowLayoutPanelTop.Controls.Add(buttonСategoriesAdd);
             flowLayoutPanelTop.Controls.Add(buttonСategoriesUpdate);
             flowLayoutPanelTop.Controls.Add(buttonСategoriesDelete);
@@ -54,7 +55,7 @@
             // 
             // buttonСategoriesAdd
             // 
-            buttonСategoriesAdd.BackColor = Color.White;
+            buttonСategoriesAdd.BackColor = Color.FromArgb(103, 186, 128);
             buttonСategoriesAdd.Location = new Point(13, 13);
             buttonСategoriesAdd.Name = "buttonСategoriesAdd";
             buttonСategoriesAdd.Size = new Size(150, 35);
@@ -65,7 +66,7 @@
             // 
             // buttonСategoriesUpdate
             // 
-            buttonСategoriesUpdate.BackColor = Color.White;
+            buttonСategoriesUpdate.BackColor = Color.FromArgb(103, 186, 128);
             buttonСategoriesUpdate.Location = new Point(169, 13);
             buttonСategoriesUpdate.Name = "buttonСategoriesUpdate";
             buttonСategoriesUpdate.Size = new Size(150, 35);
@@ -76,13 +77,14 @@
             // 
             // buttonСategoriesDelete
             // 
-            buttonСategoriesDelete.BackColor = Color.White;
+            buttonСategoriesDelete.BackColor = Color.FromArgb(103, 186, 128);
             buttonСategoriesDelete.Location = new Point(325, 13);
             buttonСategoriesDelete.Name = "buttonСategoriesDelete";
             buttonСategoriesDelete.Size = new Size(150, 35);
             buttonСategoriesDelete.TabIndex = 2;
             buttonСategoriesDelete.Text = "Удалить";
             buttonСategoriesDelete.UseVisualStyleBackColor = false;
+            buttonСategoriesDelete.Click += ButtonСategoriesDelete_Click;
             // 
             // panelFill
             // 
