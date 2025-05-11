@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pizza_Mia.Models;
+using System.ComponentModel;
 using AppContext = Pizza_Mia.Models.AppContext;
 namespace Pizza_Mia
 {
-   
+
     public partial class FormСategoriesOfDishes : Form
-    { 
+    {
         private AppContext db;
         public FormСategoriesOfDishes()
         {
@@ -16,11 +18,38 @@ namespace Pizza_Mia
             base.OnLoad(e);
             this.db = new AppContext();
             this.db.CategoriesDishes.Load();
-            this.dataGridViewСategories.DataSource = this.db.CategoriesDishes.Local.OrderBy(o=>o.Name).ToList();
+            this.dataGridViewСategories.DataSource = this.db.CategoriesDishes.Local.OrderBy(o => o.Name).ToList();
             dataGridViewСategories.Columns["Id"].Visible = false;
             dataGridViewСategories.Columns["Dishes"].Visible = false;
-            
+
             dataGridViewСategories.Columns["Name"].HeaderText = "Категория блюда";
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            this.db?.Dispose();
+            this.db = null;
+        }
+        private void ButtonСategoriesAdd_Click(object sender, EventArgs e)
+        {
+            FormAddCategories formAddCategories = new FormAddCategories();
+            DialogResult result = formAddCategories.ShowDialog(this);
+
+            if (result == DialogResult.Cancel) 
+                return;
+
+            CategoriesDish categoriesDish = new CategoriesDish
+            {
+                Name = formAddCategories.textBoxCategoriesOfDishes.Text
+            };
+
+            db.CategoriesDishes.Add(categoriesDish);
+            db.SaveChanges();
+
+            MessageBox.Show("Новый объект добавлен");
+
+            this.dataGridViewСategories.DataSource = this.db.CategoriesDishes.Local.OrderBy(o => o.Name).ToList();
         }
     }
 }

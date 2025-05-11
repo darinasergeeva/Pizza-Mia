@@ -70,6 +70,7 @@
             Margin = new Padding(5);
             MaximizeBox = false;
             Name = "FormGeneral";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Pizza Mia";
             ResumeLayout(false);
         }

@@ -61,6 +61,7 @@
             buttonСategoriesAdd.TabIndex = 0;
             buttonСategoriesAdd.Text = "Добавить";
             buttonСategoriesAdd.UseVisualStyleBackColor = false;
+            buttonСategoriesAdd.Click += ButtonСategoriesAdd_Click;
             // 
             // buttonСategoriesUpdate
             // 
@@ -117,6 +118,7 @@
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5);
             Name = "FormСategoriesOfDishes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Категории блюд";
             flowLayoutPanelTop.ResumeLayout(false);
             panelFill.ResumeLayout(false);
