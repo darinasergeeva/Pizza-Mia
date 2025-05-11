@@ -72,6 +72,7 @@
             buttonСategoriesUpdate.TabIndex = 1;
             buttonСategoriesUpdate.Text = "Редактировать";
             buttonСategoriesUpdate.UseVisualStyleBackColor = false;
+            buttonСategoriesUpdate.Click += ButtonСategoriesUpdate_Click;
             // 
             // buttonСategoriesDelete
             // 

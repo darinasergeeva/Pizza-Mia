@@ -36,7 +36,7 @@ namespace Pizza_Mia
             FormAddCategories formAddCategories = new FormAddCategories();
             DialogResult result = formAddCategories.ShowDialog(this);
 
-            if (result == DialogResult.Cancel) 
+            if (result == DialogResult.Cancel)
                 return;
 
             CategoriesDish categoriesDish = new CategoriesDish
@@ -50,6 +50,36 @@ namespace Pizza_Mia
             MessageBox.Show("Новый объект добавлен");
 
             this.dataGridViewСategories.DataSource = this.db.CategoriesDishes.Local.OrderBy(o => o.Name).ToList();
+        }
+
+        private void ButtonСategoriesUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewСategories.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            int index = dataGridViewСategories.SelectedRows[0].Index;
+            int id; 
+            bool converted = Int32.TryParse(dataGridViewСategories[0, index].Value.ToString(), out id); 
+            if (!converted)
+                return;
+            CategoriesDish categoriesDish = db.CategoriesDishes.Find(id);
+            if (categoriesDish == null) 
+            {
+                MessageBox.Show("Запись не найдена.");
+                return;
+            }
+            FormAddCategories formAddCategories = new();
+            formAddCategories.textBoxCategoriesOfDishes.Text = categoriesDish.Name;
+            DialogResult result = formAddCategories.ShowDialog(this);
+            if (result == DialogResult.Cancel)
+                return;
+            categoriesDish.Name = formAddCategories.textBoxCategoriesOfDishes.Text;
+            db.SaveChanges();
+            MessageBox.Show("Объект обновлён");
+            this.dataGridViewСategories.DataSource = this.db.CategoriesDishes.Local.OrderBy(o => o.Name).ToList();
+
         }
     }
 }
