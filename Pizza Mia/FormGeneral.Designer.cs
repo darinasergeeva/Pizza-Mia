@@ -30,6 +30,7 @@
         {
             buttonDishes = new Button();
             buttonCategoriesOfDishes = new Button();
+            buttonIngredients = new Button();
             SuspendLayout();
             // 
             // buttonDishes
@@ -39,7 +40,7 @@
             buttonDishes.ImageAlign = ContentAlignment.MiddleRight;
             buttonDishes.Location = new Point(12, 12);
             buttonDishes.Name = "buttonDishes";
-            buttonDishes.Size = new Size(603, 47);
+            buttonDishes.Size = new Size(603, 49);
             buttonDishes.TabIndex = 0;
             buttonDishes.Text = "Меню";
             buttonDishes.UseVisualStyleBackColor = false;
@@ -50,13 +51,26 @@
             buttonCategoriesOfDishes.BackColor = Color.Gainsboro;
             buttonCategoriesOfDishes.ForeColor = SystemColors.ControlText;
             buttonCategoriesOfDishes.ImageAlign = ContentAlignment.MiddleRight;
-            buttonCategoriesOfDishes.Location = new Point(12, 370);
+            buttonCategoriesOfDishes.Location = new Point(12, 343);
             buttonCategoriesOfDishes.Name = "buttonCategoriesOfDishes";
-            buttonCategoriesOfDishes.Size = new Size(603, 47);
+            buttonCategoriesOfDishes.Size = new Size(603, 33);
             buttonCategoriesOfDishes.TabIndex = 1;
             buttonCategoriesOfDishes.Text = "Категории блюд";
             buttonCategoriesOfDishes.UseVisualStyleBackColor = false;
-            buttonCategoriesOfDishes.Click += buttonCategoriesOfDishes_Click;
+            buttonCategoriesOfDishes.Click += ButtonCategoriesOfDishes_Click;
+            // 
+            // buttonIngredients
+            // 
+            buttonIngredients.BackColor = Color.Gainsboro;
+            buttonIngredients.ForeColor = SystemColors.ControlText;
+            buttonIngredients.ImageAlign = ContentAlignment.MiddleRight;
+            buttonIngredients.Location = new Point(12, 382);
+            buttonIngredients.Name = "buttonIngredients";
+            buttonIngredients.Size = new Size(603, 33);
+            buttonIngredients.TabIndex = 2;
+            buttonIngredients.Text = "Ингредиенты";
+            buttonIngredients.UseVisualStyleBackColor = false;
+            buttonIngredients.Click += ButtonIngredients_Click;
             // 
             // FormGeneral
             // 
@@ -64,6 +78,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.YFouxYbs8wo;
             ClientSize = new Size(627, 429);
+            Controls.Add(buttonIngredients);
             Controls.Add(buttonCategoriesOfDishes);
             Controls.Add(buttonDishes);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -79,5 +94,6 @@
 
         private Button buttonDishes;
         private Button buttonCategoriesOfDishes;
+        private Button buttonIngredients;
     }
 }
