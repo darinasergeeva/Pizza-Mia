@@ -39,7 +39,7 @@
             buttonDishes.ImageAlign = ContentAlignment.MiddleRight;
             buttonDishes.Location = new Point(12, 12);
             buttonDishes.Name = "buttonDishes";
-            buttonDishes.Size = new Size(191, 39);
+            buttonDishes.Size = new Size(603, 47);
             buttonDishes.TabIndex = 0;
             buttonDishes.Text = "Меню";
             buttonDishes.UseVisualStyleBackColor = false;
@@ -50,9 +50,9 @@
             buttonCategoriesOfDishes.BackColor = Color.Gainsboro;
             buttonCategoriesOfDishes.ForeColor = SystemColors.ControlText;
             buttonCategoriesOfDishes.ImageAlign = ContentAlignment.MiddleRight;
-            buttonCategoriesOfDishes.Location = new Point(424, 12);
+            buttonCategoriesOfDishes.Location = new Point(12, 370);
             buttonCategoriesOfDishes.Name = "buttonCategoriesOfDishes";
-            buttonCategoriesOfDishes.Size = new Size(191, 39);
+            buttonCategoriesOfDishes.Size = new Size(603, 47);
             buttonCategoriesOfDishes.TabIndex = 1;
             buttonCategoriesOfDishes.Text = "Категории блюд";
             buttonCategoriesOfDishes.UseVisualStyleBackColor = false;
