@@ -94,7 +94,7 @@
             dataGridViewIngredients.MultiSelect = false;
             dataGridViewIngredients.Name = "dataGridViewIngredients";
             dataGridViewIngredients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewIngredients.Size = new Size(593, 576);
+            dataGridViewIngredients.Size = new Size(593, 611);
             dataGridViewIngredients.TabIndex = 0;
             // 
             // panelFill
@@ -104,7 +104,7 @@
             panelFill.Location = new Point(0, 61);
             panelFill.Name = "panelFill";
             panelFill.Padding = new Padding(10);
-            panelFill.Size = new Size(613, 596);
+            panelFill.Size = new Size(613, 631);
             panelFill.TabIndex = 2;
             // 
             // FormIngredients
@@ -112,7 +112,7 @@
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(613, 657);
+            ClientSize = new Size(613, 692);
             Controls.Add(panelFill);
             Controls.Add(flowLayoutPanelTop);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);

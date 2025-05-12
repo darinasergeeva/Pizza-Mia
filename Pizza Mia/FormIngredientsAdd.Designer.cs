@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             flowLayoutPanelBottm = new FlowLayoutPanel();
             buttonSave = new Button();
             buttonCancel = new Button();
             textBoxNameOfTheIngredient = new TextBox();
             panelFill = new Panel();
-            labelNameOfTheIngredient = new Label();
-            labelUnit = new Label();
-            textBoxUnit = new TextBox();
-            labelQuantityInStock = new Label();
             textBoxQuantityInStock = new TextBox();
+            labelQuantityInStock = new Label();
+            textBoxUnit = new TextBox();
+            labelUnit = new Label();
+            labelNameOfTheIngredient = new Label();
+            errorProvider = new ErrorProvider(components);
             flowLayoutPanelBottm.SuspendLayout();
             panelFill.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanelBottm
@@ -86,6 +89,8 @@
             textBoxNameOfTheIngredient.Name = "textBoxNameOfTheIngredient";
             textBoxNameOfTheIngredient.Size = new Size(402, 33);
             textBoxNameOfTheIngredient.TabIndex = 1;
+            textBoxNameOfTheIngredient.TextChanged += textBoxNameOfTheIngredient_TextChanged;
+            textBoxNameOfTheIngredient.Validating += TextBoxNameOfTheIngredient_Validating;
             // 
             // panelFill
             // 
@@ -103,33 +108,15 @@
             panelFill.Size = new Size(432, 278);
             panelFill.TabIndex = 2;
             // 
-            // labelNameOfTheIngredient
+            // textBoxQuantityInStock
             // 
-            labelNameOfTheIngredient.AutoSize = true;
-            labelNameOfTheIngredient.Dock = DockStyle.Top;
-            labelNameOfTheIngredient.Location = new Point(15, 15);
-            labelNameOfTheIngredient.Name = "labelNameOfTheIngredient";
-            labelNameOfTheIngredient.Size = new Size(263, 25);
-            labelNameOfTheIngredient.TabIndex = 0;
-            labelNameOfTheIngredient.Text = "Наименование ингредиента ";
-            // 
-            // labelUnit
-            // 
-            labelUnit.AutoSize = true;
-            labelUnit.Dock = DockStyle.Top;
-            labelUnit.Location = new Point(15, 73);
-            labelUnit.Name = "labelUnit";
-            labelUnit.Size = new Size(205, 25);
-            labelUnit.TabIndex = 2;
-            labelUnit.Text = "Единица измерения(г)";
-            // 
-            // textBoxUnit
-            // 
-            textBoxUnit.Dock = DockStyle.Top;
-            textBoxUnit.Location = new Point(15, 98);
-            textBoxUnit.Name = "textBoxUnit";
-            textBoxUnit.Size = new Size(402, 33);
-            textBoxUnit.TabIndex = 3;
+            textBoxQuantityInStock.Dock = DockStyle.Top;
+            textBoxQuantityInStock.Location = new Point(15, 156);
+            textBoxQuantityInStock.Name = "textBoxQuantityInStock";
+            textBoxQuantityInStock.Size = new Size(402, 33);
+            textBoxQuantityInStock.TabIndex = 5;
+            textBoxQuantityInStock.TextChanged += TextBoxQuantityInStock_TextChanged;
+            textBoxQuantityInStock.Validating += TextBoxQuantityInStock_Validating;
             // 
             // labelQuantityInStock
             // 
@@ -141,13 +128,39 @@
             labelQuantityInStock.TabIndex = 4;
             labelQuantityInStock.Text = "Количество на складе";
             // 
-            // textBoxQuantityInStock
+            // textBoxUnit
             // 
-            textBoxQuantityInStock.Dock = DockStyle.Top;
-            textBoxQuantityInStock.Location = new Point(15, 156);
-            textBoxQuantityInStock.Name = "textBoxQuantityInStock";
-            textBoxQuantityInStock.Size = new Size(402, 33);
-            textBoxQuantityInStock.TabIndex = 5;
+            textBoxUnit.Dock = DockStyle.Top;
+            textBoxUnit.Location = new Point(15, 98);
+            textBoxUnit.Name = "textBoxUnit";
+            textBoxUnit.Size = new Size(402, 33);
+            textBoxUnit.TabIndex = 3;
+            textBoxUnit.TextChanged += TextBoxUnit_TextChanged;
+            textBoxUnit.Validating += TextBoxUnit_Validating;
+            // 
+            // labelUnit
+            // 
+            labelUnit.AutoSize = true;
+            labelUnit.Dock = DockStyle.Top;
+            labelUnit.Location = new Point(15, 73);
+            labelUnit.Name = "labelUnit";
+            labelUnit.Size = new Size(205, 25);
+            labelUnit.TabIndex = 2;
+            labelUnit.Text = "Единица измерения(г)";
+            // 
+            // labelNameOfTheIngredient
+            // 
+            labelNameOfTheIngredient.AutoSize = true;
+            labelNameOfTheIngredient.Dock = DockStyle.Top;
+            labelNameOfTheIngredient.Location = new Point(15, 15);
+            labelNameOfTheIngredient.Name = "labelNameOfTheIngredient";
+            labelNameOfTheIngredient.Size = new Size(263, 25);
+            labelNameOfTheIngredient.TabIndex = 0;
+            labelNameOfTheIngredient.Text = "Наименование ингредиента ";
+            // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
             // 
             // FormIngredientsAdd
             // 
@@ -157,12 +170,12 @@
             Controls.Add(flowLayoutPanelBottm);
             Controls.Add(panelFill);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "FormIngredientsAdd";
-            Text = "FormIngredientsAdd";
             flowLayoutPanelBottm.ResumeLayout(false);
             panelFill.ResumeLayout(false);
             panelFill.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -179,5 +192,6 @@
         private Label labelQuantityInStock;
         protected internal TextBox textBoxUnit;
         private Label labelUnit;
+        private ErrorProvider errorProvider;
     }
 }

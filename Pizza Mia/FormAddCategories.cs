@@ -23,7 +23,7 @@ namespace Pizza_Mia
             }
         }
 
-        private void textBoxCategoriesOfDishes_TextChanged(object sender, EventArgs e)
+        private void TextBoxCategoriesOfDishes_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBoxCategoriesOfDishes.Text))
             {

@@ -59,7 +59,7 @@
             textBoxCategoriesOfDishes.Name = "textBoxCategoriesOfDishes";
             textBoxCategoriesOfDishes.Size = new Size(338, 32);
             textBoxCategoriesOfDishes.TabIndex = 1;
-            textBoxCategoriesOfDishes.TextChanged += textBoxCategoriesOfDishes_TextChanged;
+            textBoxCategoriesOfDishes.TextChanged += TextBoxCategoriesOfDishes_TextChanged;
             textBoxCategoriesOfDishes.Validating += TextBoxCategoriesOfDishes_Validating;
             // 
             // labelCategoriesOfDishes
