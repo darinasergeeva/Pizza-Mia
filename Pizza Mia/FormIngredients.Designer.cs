@@ -73,6 +73,7 @@
             buttonIngredientsUpdate.TabIndex = 1;
             buttonIngredientsUpdate.Text = "Редактировать";
             buttonIngredientsUpdate.UseVisualStyleBackColor = false;
+            buttonIngredientsUpdate.Click += ButtonIngredientsUpdate_Click;
             // 
             // buttonIngredientsDelete
             // 

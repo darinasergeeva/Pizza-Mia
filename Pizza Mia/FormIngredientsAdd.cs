@@ -31,7 +31,7 @@ namespace Pizza_Mia
             }
         }
 
-        private void textBoxNameOfTheIngredient_TextChanged(object sender, EventArgs e)
+        private void TextBoxNameOfTheIngredient_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBoxNameOfTheIngredient.Text))
             {

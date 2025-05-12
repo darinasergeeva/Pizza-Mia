@@ -89,7 +89,7 @@
             textBoxNameOfTheIngredient.Name = "textBoxNameOfTheIngredient";
             textBoxNameOfTheIngredient.Size = new Size(402, 33);
             textBoxNameOfTheIngredient.TabIndex = 1;
-            textBoxNameOfTheIngredient.TextChanged += textBoxNameOfTheIngredient_TextChanged;
+            textBoxNameOfTheIngredient.TextChanged += TextBoxNameOfTheIngredient_TextChanged;
             textBoxNameOfTheIngredient.Validating += TextBoxNameOfTheIngredient_Validating;
             // 
             // panelFill

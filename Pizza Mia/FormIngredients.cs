@@ -43,7 +43,7 @@ namespace Pizza_Mia
             {
                 Name = formIngredientsAdd.textBoxNameOfTheIngredient.Text,
                 Unit = int.Parse(formIngredientsAdd.textBoxUnit.Text),
-                StockQuantity = int.Parse(formIngredientsAdd.textBoxQuantityInStock.Text) 
+                StockQuantity = int.Parse(formIngredientsAdd.textBoxQuantityInStock.Text)
             };
             // Добавляем новый ингредиент в контекст базы данных
             db.Ingredients.Add(ingredient);
@@ -52,6 +52,60 @@ namespace Pizza_Mia
             MessageBox.Show("Новый ингредиент добавлен");
             // Обновляем источник данных для DataGridView, если он используется для отображения ингредиентов
             this.dataGridViewIngredients.DataSource = this.db.Ingredients.Local.OrderBy(o => o.Name).ToList();
+        }
+
+        private void ButtonIngredientsUpdate_Click(object sender, EventArgs e)
+        {
+            // Проверка, что выбран хотя бы один элемент в DataGridView
+            if (dataGridViewIngredients.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите ингредиент для редактирования.");
+                return;
+            }
+
+            // Получаем индекс выбранной строки
+            int index = dataGridViewIngredients.SelectedRows[0].Index;
+
+            //ID ингредиента из первой колонки (индекс 0) выбранной строки
+            if (!int.TryParse(dataGridViewIngredients[0, index].Value?.ToString(), out int id))
+            {
+                MessageBox.Show("Не удалось получить корректный ID ингредиента.");
+                return;
+            }
+
+            // Ищем ингредиент в базе по ID
+            Ingredient ingredient = db.Ingredients.Find(id);
+
+          
+            FormIngredientsAdd formIngredientsAdd = new FormIngredientsAdd();
+            formIngredientsAdd.textBoxNameOfTheIngredient.Text = ingredient.Name;
+            formIngredientsAdd.textBoxUnit.Text = ingredient.Unit.ToString();
+            formIngredientsAdd.textBoxQuantityInStock.Text = ingredient.StockQuantity.ToString();
+
+            
+            DialogResult result = formIngredientsAdd.ShowDialog(this);
+            if (result == DialogResult.Cancel)
+                return;
+
+            // Валидируем и обновляем данные ингредиента из формы
+            ingredient.Name = formIngredientsAdd.textBoxNameOfTheIngredient.Text;
+
+            if (!int.TryParse(formIngredientsAdd.textBoxUnit.Text, out int unit))
+            {
+                MessageBox.Show("Пожалуйста, введите корректное целочисленное значение для поля 'Единица измерения'.");
+                return;
+            }
+            ingredient.Unit = unit;
+
+            if (!int.TryParse(formIngredientsAdd.textBoxQuantityInStock.Text, out int quantity))
+            {
+                MessageBox.Show("Пожалуйста, введите корректное целочисленное значение для поля 'Количество на складе'.");
+                return;
+            }
+            ingredient.StockQuantity = quantity;
+            db.SaveChanges();
+            MessageBox.Show("Ингредиент успешно обновлен.");
+            dataGridViewIngredients.DataSource = db.Ingredients.Local.OrderBy(i => i.Name).ToList();
         }
     }
 }
