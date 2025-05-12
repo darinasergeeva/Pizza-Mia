@@ -172,6 +172,7 @@
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5);
             Name = "FormIngredientsAdd";
+            StartPosition = FormStartPosition.CenterScreen;
             flowLayoutPanelBottm.ResumeLayout(false);
             panelFill.ResumeLayout(false);
             panelFill.PerformLayout();

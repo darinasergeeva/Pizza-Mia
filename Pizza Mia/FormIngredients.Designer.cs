@@ -84,6 +84,7 @@
             buttonIngredientsDelete.TabIndex = 2;
             buttonIngredientsDelete.Text = "Удалить";
             buttonIngredientsDelete.UseVisualStyleBackColor = false;
+            buttonIngredientsDelete.Click += ButtonIngredientsDelete_Click;
             // 
             // dataGridViewIngredients
             // 

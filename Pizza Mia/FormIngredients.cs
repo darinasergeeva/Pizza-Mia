@@ -76,13 +76,13 @@ namespace Pizza_Mia
             // Ищем ингредиент в базе по ID
             Ingredient ingredient = db.Ingredients.Find(id);
 
-          
+
             FormIngredientsAdd formIngredientsAdd = new FormIngredientsAdd();
             formIngredientsAdd.textBoxNameOfTheIngredient.Text = ingredient.Name;
             formIngredientsAdd.textBoxUnit.Text = ingredient.Unit.ToString();
             formIngredientsAdd.textBoxQuantityInStock.Text = ingredient.StockQuantity.ToString();
 
-            
+
             DialogResult result = formIngredientsAdd.ShowDialog(this);
             if (result == DialogResult.Cancel)
                 return;
@@ -106,6 +106,32 @@ namespace Pizza_Mia
             db.SaveChanges();
             MessageBox.Show("Ингредиент успешно обновлен.");
             dataGridViewIngredients.DataSource = db.Ingredients.Local.OrderBy(i => i.Name).ToList();
+        }
+
+        private void ButtonIngredientsDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewIngredients.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DialogResult result = MessageBox.Show(
+                "Вы уверены, что хотите удалить объект?",
+                "",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (result == DialogResult.No) { return; }
+            int index = dataGridViewIngredients.SelectedRows[0].Index;
+            int id;
+            bool converted = Int32.TryParse(dataGridViewIngredients[0, index].Value.ToString(), out id);
+            if (!converted)
+                return;
+            Ingredient ingredient = db.Ingredients.Find(id);
+
+            db.Ingredients.Remove(ingredient);
+
+            db.SaveChanges();
+            MessageBox.Show("Объект удалён");
+            this.dataGridViewIngredients.DataSource = this.db.Ingredients.Local.OrderBy(o => o.Name).ToList();
         }
     }
 }
