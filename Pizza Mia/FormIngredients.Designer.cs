@@ -62,6 +62,7 @@
             buttonIngredientsAdd.TabIndex = 0;
             buttonIngredientsAdd.Text = "Добавить";
             buttonIngredientsAdd.UseVisualStyleBackColor = false;
+            buttonIngredientsAdd.Click += ButtonIngredientsAdd_Click;
             // 
             // buttonIngredientsUpdate
             // 

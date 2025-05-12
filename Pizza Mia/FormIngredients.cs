@@ -28,9 +28,13 @@ namespace Pizza_Mia
         protected override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
-
             this.db?.Dispose();
             this.db = null;
+        }
+
+        private void ButtonIngredientsAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
