@@ -61,6 +61,7 @@
             buttonMenu.TabIndex = 2;
             buttonMenu.Text = "Меню";
             buttonMenu.UseVisualStyleBackColor = true;
+            buttonMenu.Click += ButtonMenu_Click;
             // 
             // InitialForm
             // 

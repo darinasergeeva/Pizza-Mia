@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Pizza_Mia
 {
-    public partial class InitialForm : Form
+    public partial class FormLogin : Form
     {
-        public InitialForm()
+        public FormLogin()
         {
             InitializeComponent();
-        }
-
-        private void ButtonMenu_Click(object sender, EventArgs e)
-        {
-            FormDishes formdishes = new FormDishes();
-            formdishes.ShowDialog();
         }
     }
 }
