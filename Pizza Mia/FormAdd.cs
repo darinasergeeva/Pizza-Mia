@@ -23,7 +23,7 @@ namespace Pizza_Mia
 
         private void LoadDishCategories() // Метод для загрузки категорий блюд
         {
-            using (var db = new Pizza_Mia.Models.AppContext())  // Создаем новый контекст базы данных
+            using (var db = new Pizza_Mia.Models.PizzaAppContext())  // Создаем новый контекст базы данных
             {
                 // Загружаем категории из базы данных
                 var categories = db.CategoriesDishes

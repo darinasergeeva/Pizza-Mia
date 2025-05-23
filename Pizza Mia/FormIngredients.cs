@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pizza_Mia.Models;
 using System.ComponentModel;
-using AppContext = Pizza_Mia.Models.AppContext;
+using PizzaAppContext = Pizza_Mia.Models.PizzaAppContext;
 namespace Pizza_Mia
 {
     public partial class FormIngredients : Form
     {
-        private AppContext db;
+        private PizzaAppContext db;
         public FormIngredients()
         {
             InitializeComponent();
@@ -14,7 +14,7 @@ namespace Pizza_Mia
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            this.db = new AppContext();
+            this.db = new PizzaAppContext();
             this.db.Ingredients.Load();
             this.dataGridViewIngredients.DataSource = this.db.Ingredients.Local.OrderBy(o => o.Name).ToList();
             dataGridViewIngredients.Columns["Id"].Visible = false;

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Pizza_Mia.Models;
 
-public partial class AppContext : DbContext
+public partial class PizzaAppContext : DbContext
 {
-    public AppContext()
+    public PizzaAppContext()
     {
     }
 
-    public AppContext(DbContextOptions<AppContext> options)
+    public PizzaAppContext(DbContextOptions<PizzaAppContext> options)
         : base(options)
     {
     }

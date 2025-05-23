@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pizza_Mia.Models;
-using AppContext = Pizza_Mia.Models.AppContext;
+using PizzaAppContext = Pizza_Mia.Models.PizzaAppContext;
 
 namespace Pizza_Mia 
 {
     public partial class FormDishes : Form
     {
         // Контекст для работы с базой данных
-        private AppContext db;
+        private PizzaAppContext db;
         // Переменная для хранения выбранного ID блюда (null, если ничего не выбрано)
         private int? SelectedDishId = null;
         public FormDishes()
@@ -19,7 +19,7 @@ namespace Pizza_Mia
         protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e); // Вызываем базовый метод загрузки формы
-            db = new AppContext(); // Создаем новый экземпляр контекста базы данных
+            db = new PizzaAppContext(); // Создаем новый экземпляр контекста базы данных
             await ShowDishesAsCardsAsync(); //загружаем и отображаем блюда на форме
         }
         private async void ButtonAdd_Click(object sender, EventArgs e)
