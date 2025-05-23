@@ -1,3 +1,5 @@
+using Pizza_Mia.Models;
+
 namespace Pizza_Mia
 {
     internal static class Program
@@ -5,6 +7,7 @@ namespace Pizza_Mia
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        public static User CurrentUser { get; set; }
         [STAThread]
         static void Main()
         {

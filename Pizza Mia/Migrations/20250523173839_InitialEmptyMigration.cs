@@ -12,7 +12,7 @@ namespace Pizza_Mia.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
+           
         }
 
         /// <inheritdoc />

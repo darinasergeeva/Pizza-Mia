@@ -43,9 +43,9 @@
             txtUsername.Location = new Point(15, 15);
             txtUsername.Margin = new Padding(10);
             txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Логин";
             txtUsername.Size = new Size(319, 33);
             txtUsername.TabIndex = 1;
-            txtUsername.Text = "Логин";
             // 
             // flowLayoutPanelBottm
             // 
@@ -57,7 +57,7 @@
             flowLayoutPanelBottm.Font = new Font("Segoe UI", 14.25F);
             flowLayoutPanelBottm.Location = new Point(0, 108);
             flowLayoutPanelBottm.Name = "flowLayoutPanelBottm";
-            flowLayoutPanelBottm.Padding = new Padding(15, 15, 15, 15);
+            flowLayoutPanelBottm.Padding = new Padding(15);
             flowLayoutPanelBottm.Size = new Size(349, 71);
             flowLayoutPanelBottm.TabIndex = 3;
             // 
@@ -71,6 +71,7 @@
             buttonLogin.TabIndex = 0;
             buttonLogin.Text = "Войти";
             buttonLogin.UseVisualStyleBackColor = false;
+            buttonLogin.Click += ButtonLogin_Click;
             // 
             // panelFill
             // 
@@ -81,7 +82,7 @@
             panelFill.Font = new Font("Segoe UI", 14.25F);
             panelFill.Location = new Point(0, 0);
             panelFill.Name = "panelFill";
-            panelFill.Padding = new Padding(15, 15, 15, 15);
+            panelFill.Padding = new Padding(15);
             panelFill.Size = new Size(349, 179);
             panelFill.TabIndex = 2;
             // 
@@ -91,9 +92,10 @@
             txtPassword.Location = new Point(15, 48);
             txtPassword.Margin = new Padding(10);
             txtPassword.Name = "txtPassword";
+            txtPassword.PlaceholderText = "Пароль";
             txtPassword.Size = new Size(319, 33);
             txtPassword.TabIndex = 2;
-            txtPassword.Text = "Пароль";
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // FormLogin
             // 

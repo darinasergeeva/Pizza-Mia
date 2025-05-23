@@ -42,6 +42,7 @@
             buttonEnter.TabIndex = 0;
             buttonEnter.Text = "Войти";
             buttonEnter.UseVisualStyleBackColor = false;
+            buttonEnter.Click += ButtonEnter_Click;
             // 
             // buttonRegistration
             // 
@@ -55,9 +56,9 @@
             // 
             // buttonMenu
             // 
-            buttonMenu.Location = new Point(12, 356);
+            buttonMenu.Location = new Point(12, 336);
             buttonMenu.Name = "buttonMenu";
-            buttonMenu.Size = new Size(556, 37);
+            buttonMenu.Size = new Size(556, 45);
             buttonMenu.TabIndex = 2;
             buttonMenu.Text = "Меню";
             buttonMenu.UseVisualStyleBackColor = true;
@@ -73,7 +74,7 @@
             Controls.Add(buttonRegistration);
             Controls.Add(buttonEnter);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             MaximizeBox = false;
             Name = "InitialForm";
             StartPosition = FormStartPosition.CenterScreen;

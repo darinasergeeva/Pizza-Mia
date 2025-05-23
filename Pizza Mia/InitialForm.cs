@@ -22,5 +22,11 @@ namespace Pizza_Mia
             FormDishes formdishes = new FormDishes();
             formdishes.ShowDialog();
         }
+
+        private void ButtonEnter_Click(object sender, EventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            formLogin.ShowDialog();
+        }
     }
 }

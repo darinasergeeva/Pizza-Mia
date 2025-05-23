@@ -12,7 +12,7 @@ using Pizza_Mia.Models;
 namespace Pizza_Mia.Migrations
 {
     [DbContext(typeof(PizzaAppContext))]
-    [Migration("20250523174054_AddUsersTable")]
+    [Migration("20250523194120_AddUsersTable")]
     partial class AddUsersTable
     {
         /// <inheritdoc />
