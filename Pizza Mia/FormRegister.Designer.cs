@@ -39,6 +39,8 @@
             labelPassword = new Label();
             txtUsername = new TextBox();
             labelUsername = new Label();
+            labelLogin = new Label();
+            linkLabelLogin = new LinkLabel();
             flowLayoutPanelBottm.SuspendLayout();
             panelFill.SuspendLayout();
             SuspendLayout();
@@ -51,7 +53,7 @@
             flowLayoutPanelBottm.Dock = DockStyle.Bottom;
             flowLayoutPanelBottm.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanelBottm.Font = new Font("Segoe UI", 14.25F);
-            flowLayoutPanelBottm.Location = new Point(0, 278);
+            flowLayoutPanelBottm.Location = new Point(0, 321);
             flowLayoutPanelBottm.Name = "flowLayoutPanelBottm";
             flowLayoutPanelBottm.Padding = new Padding(15);
             flowLayoutPanelBottm.Size = new Size(335, 71);
@@ -72,6 +74,8 @@
             // panelFill
             // 
             panelFill.BackColor = Color.White;
+            panelFill.Controls.Add(linkLabelLogin);
+            panelFill.Controls.Add(labelLogin);
             panelFill.Controls.Add(cmbRole);
             panelFill.Controls.Add(labelRole);
             panelFill.Controls.Add(txtEmail);
@@ -85,7 +89,7 @@
             panelFill.Location = new Point(0, 0);
             panelFill.Name = "panelFill";
             panelFill.Padding = new Padding(15);
-            panelFill.Size = new Size(335, 349);
+            panelFill.Size = new Size(335, 392);
             panelFill.TabIndex = 4;
             // 
             // cmbRole
@@ -156,12 +160,33 @@
             labelUsername.TabIndex = 0;
             labelUsername.Text = "Придумайте логин:";
             // 
+            // labelLogin
+            // 
+            labelLogin.AutoSize = true;
+            labelLogin.Location = new Point(11, 281);
+            labelLogin.Name = "labelLogin";
+            labelLogin.Size = new Size(169, 25);
+            labelLogin.TabIndex = 8;
+            labelLogin.Text = "Уже есть аккаунт?";
+            // 
+            // linkLabelLogin
+            // 
+            linkLabelLogin.AutoSize = true;
+            linkLabelLogin.LinkColor = Color.Black;
+            linkLabelLogin.Location = new Point(172, 281);
+            linkLabelLogin.Name = "linkLabelLogin";
+            linkLabelLogin.Size = new Size(64, 25);
+            linkLabelLogin.TabIndex = 9;
+            linkLabelLogin.TabStop = true;
+            linkLabelLogin.Text = "Войти";
+            linkLabelLogin.LinkClicked += LinkLabelLogin_LinkClicked;
+            // 
             // FormRegister
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(335, 349);
+            ClientSize = new Size(335, 392);
             Controls.Add(flowLayoutPanelBottm);
             Controls.Add(panelFill);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -191,5 +216,7 @@
         private TextBox txtPassword;
         private Label labelPassword;
         private ComboBox cmbRole;
+        private Label labelLogin;
+        private LinkLabel linkLabelLogin;
     }
 }

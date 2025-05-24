@@ -1,15 +1,58 @@
-﻿namespace Pizza_Mia
+﻿using Pizza_Mia.Models;
+
+namespace Pizza_Mia 
 {
-    public partial class FormRegister : Form
+    public partial class FormRegister : Form 
     {
-        public FormRegister()
+        public FormRegister() 
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            InitializeRoleComboBox(); // Инициализация комбобокса с ролями
         }
 
-        private void ButtonRegister_Click(object sender, EventArgs e)
+        private void InitializeRoleComboBox() 
         {
+            // Добавляем доступные роли в комбобокс
+            cmbRole.Items.Add("Администратор");
+            cmbRole.Items.Add("Повар"); 
+            cmbRole.Items.Add("Кассир"); 
+            cmbRole.Items.Add("Клиент");
+        }
 
+        private void ButtonRegister_Click(object sender, EventArgs e) 
+        {
+            using (var db = new PizzaAppContext()) // Создаем новый экземпляр контекста базы данных
+            {
+                // Проверяем, занято ли имя пользователя
+                if (db.users.Any(u => u.Username == txtUsername.Text)) // Проверяем, существует ли пользователь с таким именем
+                {
+                    MessageBox.Show("Имя пользователя уже занято.");
+                    return; 
+                }
+
+                // Создаем нового пользователя
+                var user = new User // Создаем новый объект User
+                {
+                    Username = txtUsername.Text, 
+                    Email = txtEmail.Text, 
+                    Role = cmbRole.Text,
+                    Password = txtPassword.Text 
+                };
+
+                // Добавляем пользователя в базу данных
+                db.users.Add(user); // Добавляем нового пользователя в коллекцию пользователей
+                db.SaveChanges(); // Сохраняем изменения в базе данных
+
+                MessageBox.Show("Регистрация успешна!");
+                new FormGeneral().ShowDialog(); // Открываем главную форму как модальную
+                this.Close(); // Закрываем форму регистрации после закрытия главной формы
+            }
+        }
+
+        private void LinkLabelLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+        {
+            FormLogin loginForm = new FormLogin(); 
+            loginForm.ShowDialog();
         }
     }
 }
