@@ -12,7 +12,7 @@ namespace Pizza_Mia
         private int? SelectedDishId = null;
         public FormDishes()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         // Метод, который вызывается при загрузке формы
@@ -32,12 +32,12 @@ namespace Pizza_Mia
                     // Создаем новый объект блюдо, заполняем его данными с формы
                     var newDish = new Dish
                     {
-                        Name = formAdd.DishName,             
+                        Name = formAdd.DishName,
                         Description = formAdd.DishDescription,
-                        Price = formAdd.DishPrice,            
-                        СookingTime = formAdd.CookingTime,    
-                        Photo = formAdd.PhotoPath,             
-                        IdCategory = formAdd.DishCategoryId  
+                        Price = formAdd.DishPrice,
+                        СookingTime = formAdd.CookingTime,
+                        Photo = formAdd.PhotoPath,
+                        IdCategory = formAdd.DishCategoryId
                     };
 
                     db.Dishes.Add(newDish);          // Добавляем блюдо в базу данных (в контекст)
@@ -45,9 +45,9 @@ namespace Pizza_Mia
 
                     await ShowDishesAsCardsAsync(newDish.Id); // Обновляем отображение, выделяя добавленное блюдо
 
-                    MessageBox.Show("Новое блюдо добавлено!"); 
+                    MessageBox.Show("Новое блюдо добавлено!");
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка: {ex.Message}");
                 }
@@ -55,10 +55,10 @@ namespace Pizza_Mia
         }
         private async void ButtonUpdate_Click(object sender, EventArgs e)
         {
-            if (SelectedDishId == null) 
+            if (SelectedDishId == null)
             {
-                MessageBox.Show("Пожалуйста, выберите блюдо для редактирования."); 
-                return; 
+                MessageBox.Show("Пожалуйста, выберите блюдо для редактирования.");
+                return;
             }
 
             // Загружаем блюдо из базы вместе с категорией, по выбранному ID
@@ -66,10 +66,10 @@ namespace Pizza_Mia
                 .Include(d => d.CategoriesDish)                       // Включаем навигационное свойство "Категория"
                 .FirstOrDefaultAsync(d => d.Id == SelectedDishId.Value); // Ищем блюдо по ID
 
-            if (dishToEdit == null) 
+            if (dishToEdit == null)
             {
                 MessageBox.Show("Блюдо не найдено.");
-                return; 
+                return;
             }
             using var formAdd = new FormAdd(dishToEdit);
             if (formAdd.ShowDialog(this) == DialogResult.OK) // Если пользователь подтвердил изменения
@@ -80,7 +80,7 @@ namespace Pizza_Mia
                     dishToEdit.Name = formAdd.DishName;
                     dishToEdit.Description = formAdd.DishDescription;
                     dishToEdit.Price = formAdd.DishPrice;
-                    dishToEdit.СookingTime = formAdd.CookingTime;   
+                    dishToEdit.СookingTime = formAdd.CookingTime;
                     dishToEdit.Photo = formAdd.PhotoPath;
                     dishToEdit.IdCategory = formAdd.DishCategoryId;
 
@@ -88,20 +88,20 @@ namespace Pizza_Mia
 
                     await ShowDishesAsCardsAsync(dishToEdit.Id); // Обновляем отображение, выделяя отредактированное блюдо
 
-                    MessageBox.Show("Блюдо обновлено!");     
+                    MessageBox.Show("Блюдо обновлено!");
                 }
-                catch (Exception ex)                               
+                catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при обновлении: {ex.Message}"); 
+                    MessageBox.Show($"Ошибка при обновлении: {ex.Message}");
                 }
             }
         }
         private async void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (SelectedDishId == null) 
+            if (SelectedDishId == null)
             {
-                MessageBox.Show("Пожалуйста, выберите блюдо для удаления."); 
-                return; 
+                MessageBox.Show("Пожалуйста, выберите блюдо для удаления.");
+                return;
             }
             var confirm = MessageBox.Show(
                 "Вы уверены, что хотите удалить выбранное блюдо?",
@@ -109,7 +109,7 @@ namespace Pizza_Mia
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
-            if (confirm == DialogResult.Yes) 
+            if (confirm == DialogResult.Yes)
             {
                 try
                 {
@@ -121,16 +121,16 @@ namespace Pizza_Mia
                         await db.SaveChangesAsync();        // Сохраняем изменения в базе
                         await ShowDishesAsCardsAsync();    // Обновляем отображение карточек
                         SelectedDishId = null;              // Сбрасываем выбор
-                        MessageBox.Show("Блюдо успешно удалено."); 
+                        MessageBox.Show("Блюдо успешно удалено.");
                     }
-                    else 
+                    else
                     {
-                        MessageBox.Show("Блюдо не найдено."); 
+                        MessageBox.Show("Блюдо не найдено.");
                     }
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при удалении: {ex.Message}"); 
+                    MessageBox.Show($"Ошибка при удалении: {ex.Message}");
                 }
             }
         }
@@ -162,22 +162,22 @@ namespace Pizza_Mia
             // Создаем панель, которая будет служить карточкой блюда
             var panel = new Panel
             {
-                Width = 250,                   
-                Height = 150,                    
+                Width = 250,
+                Height = 150,
                 Margin = new Padding(10),         // Отступы вокруг карточки
-                BackColor = Color.White,          
-                BorderStyle = BorderStyle.FixedSingle, 
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
                 Tag = dish.Id                    // Сохраняем ID блюда в Tag для идентификации
             };
 
             // Создаем Label с названием блюда
             var nameLabel = new Label
             {
-                Text = dish.Name,                
-                Location = new Point(10, 10),    
-                Size = new Size(230, 25),      
-                Font = new Font("Segoe UI", 12, FontStyle.Bold), 
-                ForeColor = Color.Black,         
+                Text = dish.Name,
+                Location = new Point(10, 10),
+                Size = new Size(230, 25),
+                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                ForeColor = Color.Black,
                 AutoEllipsis = true               // Показывать многоточие, если текст не помещается
             };
             panel.Controls.Add(nameLabel);          // Добавляем к панели
@@ -274,6 +274,11 @@ namespace Pizza_Mia
                 SelectedDishId = dishId;                    // Устанавливаем ID выбранного блюда
                 flowLayoutPanelDishes.ScrollControlIntoView(selectedPanel); // Прокручиваем к ней
             }
+        }
+
+        private void FormDishes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

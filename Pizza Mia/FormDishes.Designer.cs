@@ -110,6 +110,7 @@
             Name = "FormDishes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Меню";
+            Load += FormDishes_Load;
             flowLayoutPanelTop.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

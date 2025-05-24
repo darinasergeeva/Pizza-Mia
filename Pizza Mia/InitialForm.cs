@@ -19,8 +19,8 @@ namespace Pizza_Mia
 
         private void ButtonMenu_Click(object sender, EventArgs e)
         {
-            FormDishes formdishes = new FormDishes();
-            formdishes.ShowDialog();
+            FormMenu formmenu = new FormMenu();
+            formmenu.ShowDialog();
         }
 
         private void ButtonEnter_Click(object sender, EventArgs e)
