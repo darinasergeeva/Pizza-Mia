@@ -53,6 +53,7 @@
             buttonRegistration.TabIndex = 1;
             buttonRegistration.Text = "Регистрация ";
             buttonRegistration.UseVisualStyleBackColor = false;
+            buttonRegistration.Click += ButtonRegistration_Click;
             // 
             // buttonMenu
             // 

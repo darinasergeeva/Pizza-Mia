@@ -28,5 +28,11 @@ namespace Pizza_Mia
             FormLogin formLogin = new FormLogin();
             formLogin.ShowDialog();
         }
+
+        private void ButtonRegistration_Click(object sender, EventArgs e)
+        {
+            FormRegister formRegister = new FormRegister();
+            formRegister.ShowDialog();
+        }
     }
 }
