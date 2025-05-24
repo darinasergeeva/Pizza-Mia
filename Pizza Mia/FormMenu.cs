@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore; // Подключаем пространство имен для работы с Entity Framework
 using Pizza_Mia.Models; // Подключаем пространство имен для моделей
-using System;
-using System.Drawing; // Подключаем пространство имен для работы с графикой
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Pizza_Mia
 {

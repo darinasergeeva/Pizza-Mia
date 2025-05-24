@@ -31,6 +31,7 @@
             buttonDishes = new Button();
             buttonCategoriesOfDishes = new Button();
             buttonIngredients = new Button();
+            buttonOrders = new Button();
             SuspendLayout();
             // 
             // buttonDishes
@@ -40,7 +41,7 @@
             buttonDishes.ImageAlign = ContentAlignment.MiddleRight;
             buttonDishes.Location = new Point(12, 12);
             buttonDishes.Name = "buttonDishes";
-            buttonDishes.Size = new Size(603, 49);
+            buttonDishes.Size = new Size(603, 38);
             buttonDishes.TabIndex = 0;
             buttonDishes.Text = "Меню";
             buttonDishes.UseVisualStyleBackColor = false;
@@ -72,12 +73,26 @@
             buttonIngredients.UseVisualStyleBackColor = false;
             buttonIngredients.Click += ButtonIngredients_Click;
             // 
+            // buttonOrders
+            // 
+            buttonOrders.BackColor = Color.Gainsboro;
+            buttonOrders.ForeColor = SystemColors.ControlText;
+            buttonOrders.ImageAlign = ContentAlignment.MiddleRight;
+            buttonOrders.Location = new Point(12, 56);
+            buttonOrders.Name = "buttonOrders";
+            buttonOrders.Size = new Size(603, 38);
+            buttonOrders.TabIndex = 3;
+            buttonOrders.Text = "Заказы";
+            buttonOrders.UseVisualStyleBackColor = false;
+            buttonOrders.Click += ButtonOrders_Click;
+            // 
             // FormGeneral
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.YFouxYbs8wo;
             ClientSize = new Size(627, 429);
+            Controls.Add(buttonOrders);
             Controls.Add(buttonIngredients);
             Controls.Add(buttonCategoriesOfDishes);
             Controls.Add(buttonDishes);
@@ -95,5 +110,6 @@
         private Button buttonDishes;
         private Button buttonCategoriesOfDishes;
         private Button buttonIngredients;
+        private Button buttonOrders;
     }
 }

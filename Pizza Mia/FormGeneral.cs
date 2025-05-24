@@ -24,5 +24,11 @@
             FormIngredients formIngredients = new FormIngredients();
             formIngredients.ShowDialog();
         }
+
+        private void ButtonOrders_Click(object sender, EventArgs e)
+        {
+            FormOrders formOrders = new FormOrders();
+            formOrders.ShowDialog();
+        }
     }
 }
