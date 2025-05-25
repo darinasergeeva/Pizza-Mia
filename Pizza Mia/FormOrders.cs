@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore; 
+﻿using Microsoft.EntityFrameworkCore;
 using Pizza_Mia.Models;
 
-namespace Pizza_Mia 
+namespace Pizza_Mia
 {
     public partial class FormOrders : Form
     {
@@ -19,21 +19,32 @@ namespace Pizza_Mia
             await ShowOrdersAsCardsAsync(); // Загружаем и отображаем заказы в виде карточек
         }
 
-        private async Task ShowOrdersAsCardsAsync()
+        private async Task ShowOrdersAsCardsAsync(int? selectedOrderId = null)
         {
-            flowLayoutPanelOrders.Controls.Clear(); // Очищаем старые карточки из контейнера
+            flowLayoutPanelOrders.Controls.Clear();
 
-            // Загружаем список заказов из базы данных, включая информацию о клиентах, и сортируем по дате заказа
             var ordersList = await db.Orders
-                .Include(o => o.Customer) // Включаем связанные данные о клиенте
-                .OrderByDescending(o => o.OrderDate) // Сортируем заказы по дате в порядке убывания
-                .ToListAsync(); // Получаем список заказов
+                .Include(o => o.Customer)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
 
-            // Для каждого заказа создаем карточку и добавляем ее в контейнер
+            Panel selectedPanel = null;
+
             foreach (var order in ordersList)
             {
-                var card = CreateOrderCard(order); // Создаем карточку для текущего заказа
-                flowLayoutPanelOrders.Controls.Add(card); // Добавляем карточку в контейнер
+                var card = CreateOrderCard(order);
+                card.Tag = order.Id;
+
+                if (selectedOrderId.HasValue && order.Id == selectedOrderId.Value)
+                    selectedPanel = card;
+
+                flowLayoutPanelOrders.Controls.Add(card);
+            }
+
+            if (selectedPanel != null)
+            {
+                selectedPanel.BackColor = Color.LightBlue;
+                flowLayoutPanelOrders.ScrollControlIntoView(selectedPanel);
             }
         }
 
@@ -51,7 +62,7 @@ namespace Pizza_Mia
             // Создаем Label для отображения даты заказа
             var orderDateLabel = new Label
             {
-                Text = order.OrderDate?.ToString("dd MMM yyyy") ?? "Дата не указана",
+                Text = order.OrderDate.ToString("dd MMM yyyy") ?? "Дата не указана",
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
                 Location = new Point(10, 10),
                 AutoSize = true
@@ -104,9 +115,27 @@ namespace Pizza_Mia
             };
         }
 
-        private void ButtonAdd_Click(object sender, EventArgs e)
+        private async void ButtonAdd_Click(object sender, EventArgs e)
         {
+            using var formAdd = new FormOrdersAdd();
+            if (formAdd.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    var newOrder = formAdd.NewOrder;
 
+                    db.Orders.Add(newOrder);
+                    await db.SaveChangesAsync();
+
+                    await ShowOrdersAsCardsAsync(newOrder.Id);
+                    MessageBox.Show("Заказ успешно добавлен!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при добавлении заказа: {ex.Message}");
+                }
+            }
         }
     }
 }
+

@@ -68,5 +68,10 @@ namespace Pizza_Mia
             else
                 comboBoxDishСategory.SelectedIndex = -1; // Если нет, сбрасываем выбор
         }
+
+        private void FormAdd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

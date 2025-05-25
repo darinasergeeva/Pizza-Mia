@@ -31,17 +31,15 @@
             OrderDate = new Label();
             comboBoxNameCustomer = new ComboBox();
             NameCustomer = new Label();
-            textBoxOrderDate = new TextBox();
             TotalAmount = new Label();
             flowLayoutPanelFill = new FlowLayoutPanel();
             textBoxTotalAmount = new TextBox();
-            labelThePriceOfTheDish = new Label();
-            textBoxThePriceOfTheDish = new TextBox();
             labelStatus = new Label();
             textBoxStatus = new TextBox();
             flowLayoutPanelBotton = new FlowLayoutPanel();
             buttonSave = new Button();
             buttonCancel = new Button();
+            dateTimePickerOrderDate = new DateTimePicker();
             flowLayoutPanelFill.SuspendLayout();
             flowLayoutPanelBotton.SuspendLayout();
             SuspendLayout();
@@ -71,13 +69,6 @@
             NameCustomer.TabIndex = 3;
             NameCustomer.Text = "Клиент";
             // 
-            // textBoxOrderDate
-            // 
-            textBoxOrderDate.Location = new Point(13, 42);
-            textBoxOrderDate.Name = "textBoxOrderDate";
-            textBoxOrderDate.Size = new Size(338, 33);
-            textBoxOrderDate.TabIndex = 4;
-            // 
             // TotalAmount
             // 
             TotalAmount.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -91,13 +82,11 @@
             // 
             flowLayoutPanelFill.BackColor = Color.White;
             flowLayoutPanelFill.Controls.Add(OrderDate);
-            flowLayoutPanelFill.Controls.Add(textBoxOrderDate);
+            flowLayoutPanelFill.Controls.Add(dateTimePickerOrderDate);
             flowLayoutPanelFill.Controls.Add(NameCustomer);
             flowLayoutPanelFill.Controls.Add(comboBoxNameCustomer);
             flowLayoutPanelFill.Controls.Add(TotalAmount);
             flowLayoutPanelFill.Controls.Add(textBoxTotalAmount);
-            flowLayoutPanelFill.Controls.Add(labelThePriceOfTheDish);
-            flowLayoutPanelFill.Controls.Add(textBoxThePriceOfTheDish);
             flowLayoutPanelFill.Controls.Add(labelStatus);
             flowLayoutPanelFill.Controls.Add(textBoxStatus);
             flowLayoutPanelFill.Dock = DockStyle.Fill;
@@ -105,7 +94,7 @@
             flowLayoutPanelFill.Location = new Point(0, 0);
             flowLayoutPanelFill.Name = "flowLayoutPanelFill";
             flowLayoutPanelFill.Padding = new Padding(10);
-            flowLayoutPanelFill.Size = new Size(385, 361);
+            flowLayoutPanelFill.Size = new Size(385, 287);
             flowLayoutPanelFill.TabIndex = 6;
             // 
             // textBoxTotalAmount
@@ -115,26 +104,10 @@
             textBoxTotalAmount.Size = new Size(338, 33);
             textBoxTotalAmount.TabIndex = 6;
             // 
-            // labelThePriceOfTheDish
-            // 
-            labelThePriceOfTheDish.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            labelThePriceOfTheDish.Location = new Point(13, 211);
-            labelThePriceOfTheDish.Name = "labelThePriceOfTheDish";
-            labelThePriceOfTheDish.Size = new Size(201, 29);
-            labelThePriceOfTheDish.TabIndex = 10;
-            labelThePriceOfTheDish.Text = "Цена блюда(руб)";
-            // 
-            // textBoxThePriceOfTheDish
-            // 
-            textBoxThePriceOfTheDish.Location = new Point(13, 243);
-            textBoxThePriceOfTheDish.Name = "textBoxThePriceOfTheDish";
-            textBoxThePriceOfTheDish.Size = new Size(338, 33);
-            textBoxThePriceOfTheDish.TabIndex = 11;
-            // 
             // labelStatus
             // 
             labelStatus.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            labelStatus.Location = new Point(13, 279);
+            labelStatus.Location = new Point(13, 211);
             labelStatus.Name = "labelStatus";
             labelStatus.Size = new Size(324, 29);
             labelStatus.TabIndex = 12;
@@ -142,7 +115,7 @@
             // 
             // textBoxStatus
             // 
-            textBoxStatus.Location = new Point(13, 311);
+            textBoxStatus.Location = new Point(13, 243);
             textBoxStatus.Name = "textBoxStatus";
             textBoxStatus.Size = new Size(338, 33);
             textBoxStatus.TabIndex = 13;
@@ -156,7 +129,7 @@
             flowLayoutPanelBotton.Dock = DockStyle.Bottom;
             flowLayoutPanelBotton.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanelBotton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            flowLayoutPanelBotton.Location = new Point(0, 361);
+            flowLayoutPanelBotton.Location = new Point(0, 287);
             flowLayoutPanelBotton.Name = "flowLayoutPanelBotton";
             flowLayoutPanelBotton.Padding = new Padding(10);
             flowLayoutPanelBotton.Size = new Size(385, 61);
@@ -186,12 +159,19 @@
             buttonCancel.Text = "Отмена";
             buttonCancel.UseVisualStyleBackColor = false;
             // 
+            // dateTimePickerOrderDate
+            // 
+            dateTimePickerOrderDate.Location = new Point(13, 42);
+            dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
+            dateTimePickerOrderDate.Size = new Size(338, 33);
+            dateTimePickerOrderDate.TabIndex = 14;
+            // 
             // FormOrdersAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(385, 422);
+            ClientSize = new Size(385, 348);
             Controls.Add(flowLayoutPanelFill);
             Controls.Add(flowLayoutPanelBotton);
             MaximizeBox = false;
@@ -210,16 +190,14 @@
         private Label OrderDate;
         private ComboBox comboBoxNameCustomer;
         private Label NameCustomer;
-        public TextBox textBoxOrderDate;
         private Label TotalAmount;
         private FlowLayoutPanel flowLayoutPanelFill;
         public TextBox textBoxTotalAmount;
-        private Label labelThePriceOfTheDish;
-        public TextBox textBoxThePriceOfTheDish;
         private Label labelStatus;
         public TextBox textBoxStatus;
         private FlowLayoutPanel flowLayoutPanelBotton;
         private Button buttonSave;
         private Button buttonCancel;
+        private DateTimePicker dateTimePickerOrderDate;
     }
 }

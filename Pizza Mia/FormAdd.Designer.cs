@@ -217,6 +217,7 @@
             Name = "FormAdd";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Редактор";
+            Load += FormAdd_Load;
             flowLayoutPanelFill.ResumeLayout(false);
             flowLayoutPanelFill.PerformLayout();
             flowLayoutPanelBotton.ResumeLayout(false);
