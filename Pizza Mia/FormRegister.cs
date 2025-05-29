@@ -1,25 +1,15 @@
 ﻿using Pizza_Mia.Models;
 
-namespace Pizza_Mia 
+namespace Pizza_Mia
 {
-    public partial class FormRegister : Form 
+    public partial class FormRegister : Form
     {
-        public FormRegister() 
+        public FormRegister()
         {
-            InitializeComponent(); 
-            InitializeRoleComboBox(); // Инициализация комбобокса с ролями
+            InitializeComponent();
         }
 
-        private void InitializeRoleComboBox() 
-        {
-            // Добавляем доступные роли в комбобокс
-            cmbRole.Items.Add("Администратор");
-            cmbRole.Items.Add("Повар"); 
-            cmbRole.Items.Add("Кассир"); 
-            cmbRole.Items.Add("Клиент");
-        }
-
-        private void ButtonRegister_Click(object sender, EventArgs e) 
+        private void ButtonRegister_Click(object sender, EventArgs e)
         {
             using (var db = new PizzaAppContext()) // Создаем новый экземпляр контекста базы данных
             {
@@ -27,16 +17,16 @@ namespace Pizza_Mia
                 if (db.users.Any(u => u.Username == txtUsername.Text)) // Проверяем, существует ли пользователь с таким именем
                 {
                     MessageBox.Show("Имя пользователя уже занято.");
-                    return; 
+                    return;
                 }
 
                 // Создаем нового пользователя
                 var user = new User // Создаем новый объект User
                 {
-                    Username = txtUsername.Text, 
-                    Email = txtEmail.Text, 
-                    Role = cmbRole.Text,
-                    Password = txtPassword.Text 
+                    Username = txtUsername.Text,
+                    Email = txtEmail.Text,
+                    Role = "Клиент", // Устанавливаем роль по умолчанию как "Клиент"
+                    Password = txtPassword.Text
                 };
 
                 // Добавляем пользователя в базу данных
@@ -49,9 +39,9 @@ namespace Pizza_Mia
             }
         }
 
-        private void LinkLabelLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+        private void LinkLabelLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormLogin loginForm = new FormLogin(); 
+            FormLogin loginForm = new FormLogin();
             loginForm.ShowDialog();
         }
     }
