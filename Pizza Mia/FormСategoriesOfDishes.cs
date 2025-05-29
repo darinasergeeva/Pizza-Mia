@@ -8,9 +8,11 @@ namespace Pizza_Mia
     public partial class FormСategoriesOfDishes : Form
     {
         private PizzaAppContext db;
-        public FormСategoriesOfDishes()
+        private User currentUser; // Добавляем переменную для текущего пользователя
+        public FormСategoriesOfDishes(User user)
         {
             InitializeComponent();
+            currentUser = user; // Инициализируем текущего пользователя
         }
 
         protected override void OnLoad(EventArgs e)
@@ -23,7 +25,40 @@ namespace Pizza_Mia
             dataGridViewСategories.Columns["Dishes"].Visible = false;
 
             dataGridViewСategories.Columns["Name"].HeaderText = "Категория блюда";
+            ConfigureAccess(); // Настраиваем доступ в зависимости от роли пользователя
         }
+        private void ConfigureAccess()
+        {
+            if (currentUser.Role == "Admin")
+            {
+                // Полный доступ
+                EnableAllControls();
+            }
+            else if (currentUser.Role == "Cashier")
+            {
+                DisableAllControlsExceptView();
+            }
+            else if (currentUser.Role == "Cook")
+            {
+                // Только просмотр
+                EnableAllControls();
+            }
+        }
+
+        private void EnableAllControls()
+        {
+            buttonСategoriesAdd.Enabled = true;
+            buttonСategoriesUpdate.Enabled = true;
+            buttonСategoriesDelete.Enabled = true;
+        }
+
+        private void DisableAllControlsExceptView()
+        {
+            buttonСategoriesAdd.Enabled = false;
+            buttonСategoriesUpdate.Enabled = false;
+            buttonСategoriesDelete.Enabled = false;
+        }
+       
         protected override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);

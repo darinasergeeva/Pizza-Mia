@@ -1,15 +1,15 @@
-﻿using Pizza_Mia.Models; 
+﻿using Pizza_Mia.Models;
 
-namespace Pizza_Mia 
+namespace Pizza_Mia
 {
-    public partial class FormLogin : Form 
+    public partial class FormLogin : Form
     {
-        public FormLogin() 
+        public FormLogin()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
-        private void ButtonLogin_Click(object sender, EventArgs e) 
+        private void ButtonLogin_Click(object sender, EventArgs e)
         {
             using (var db = new PizzaAppContext()) // Создаем новый экземпляр контекста базы данных
             {
@@ -19,13 +19,17 @@ namespace Pizza_Mia
                 // Проверяем, найден ли пользователь и совпадает ли введенный пароль с сохраненным паролем
                 if (user != null && user.Password == txtPassword.Text)
                 {
-                    MessageBox.Show($"Добро пожаловать, {user.Username}!"); 
-                    Program.CurrentUser = user; // Сохраняем текущего пользователя в статическом свойстве Program.CurrentUser 
-                    new FormGeneral().Show(); 
+                    MessageBox.Show($"Добро пожаловать, {user.Username}!");
+                    Program.CurrentUser = user; // Сохраняем текущего пользователя в статическом свойстве Program.CurrentUser  
+
+                    // Передаем текущего пользователя в FormGeneral
+                    FormGeneral formGeneral = new FormGeneral(user);
+                    formGeneral.ShowDialog();
+                    this.Hide(); // Скрываем форму входа
                 }
                 else
                 {
-                    MessageBox.Show("Неверный логин или пароль."); 
+                    MessageBox.Show("Неверный логин или пароль.");
                 }
             }
         }

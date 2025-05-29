@@ -6,10 +6,12 @@ namespace Pizza_Mia
     public partial class FormOrders : Form
     {
         private PizzaAppContext db; // Объявляем переменную для контекста базы данных
+        private User currentUser; // Добавляем переменную для текущего пользователя
 
-        public FormOrders()
+        public FormOrders(User user)
         {
             InitializeComponent();
+            currentUser = user; // Инициализируем текущего пользователя
         }
 
         protected override async void OnLoad(EventArgs e)
@@ -17,7 +19,51 @@ namespace Pizza_Mia
             base.OnLoad(e); // Вызываем базовый метод загрузки формы
             db = new PizzaAppContext(); // Создаем новый экземпляр контекста базы данных
             await ShowOrdersAsCardsAsync(); // Загружаем и отображаем заказы в виде карточек
+            ConfigureAccess(); // Настраиваем доступ в зависимости от роли пользователя
         }
+        private void ConfigureAccess()
+        {
+            if (currentUser.Role == "Admin")
+            {
+                // Полный доступ
+                EnableAllControls();
+            }
+            else if (currentUser.Role == "Cashier")
+            {
+                // Полный доступ
+                EnableAllControls();
+            }
+            else if (currentUser.Role == "Cook")
+            {
+                // Только просмотр
+                DisableAllControlsExceptView();
+            }
+            else if (currentUser.Role == "Client")
+            {
+                // Только просмотр добавление 
+                PartiallyEnableControls();
+            }
+        }
+
+        private void EnableAllControls()
+        {
+            buttonAdd.Enabled = true;
+            buttonUpdate.Enabled = true;
+            buttonDelete.Enabled = true;
+        }
+
+        private void DisableAllControlsExceptView()
+        {
+            buttonAdd.Enabled = false;
+            buttonUpdate.Enabled = false;
+            buttonDelete.Enabled = false;
+        }
+        private void PartiallyEnableControls()
+        {
+            buttonUpdate.Enabled = false;
+            buttonDelete.Enabled = false;
+        }
+
 
         private async Task ShowOrdersAsCardsAsync(int? selectedOrderId = null)
         {

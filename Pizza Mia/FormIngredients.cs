@@ -7,9 +7,11 @@ namespace Pizza_Mia
     public partial class FormIngredients : Form
     {
         private PizzaAppContext db;
-        public FormIngredients()
+        private User currentUser; // Добавляем переменную для текущего пользователя
+        public FormIngredients(User user)
         {
             InitializeComponent();
+            currentUser = user; // Инициализируем текущего пользователя
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -24,6 +26,28 @@ namespace Pizza_Mia
             dataGridViewIngredients.Columns["Name"].HeaderText = "Наименование";
             dataGridViewIngredients.Columns["Unit"].HeaderText = "Единица измерения(г)";
             dataGridViewIngredients.Columns["StockQuantity"].HeaderText = "Количество на складе";
+            ConfigureAccess(); // Настраиваем доступ в зависимости от роли пользователя
+
+        }
+        private void ConfigureAccess()
+        {
+            if (currentUser.Role == "Admin")
+            {
+                // Полный доступ
+                EnableAllControls();
+            }
+            else if (currentUser.Role == "Cook")
+            {
+                // Только просмотр
+                EnableAllControls();
+            }
+        }
+
+        private void EnableAllControls()
+        {
+            buttonIngredientsAdd.Enabled = true;
+            buttonIngredientsUpdate.Enabled = true;
+            buttonIngredientsDelete.Enabled = true;
         }
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -132,6 +156,11 @@ namespace Pizza_Mia
             db.SaveChanges();
             MessageBox.Show("Объект удалён");
             this.dataGridViewIngredients.DataSource = this.db.Ingredients.Local.OrderBy(o => o.Name).ToList();
+        }
+
+        private void FormIngredients_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

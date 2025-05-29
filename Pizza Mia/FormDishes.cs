@@ -8,12 +8,52 @@ namespace Pizza_Mia
     {
         // Контекст для работы с базой данных
         private PizzaAppContext db;
+        private User currentUser; // Добавляем переменную для текущего пользователя
         // Переменная для хранения выбранного ID блюда (null, если ничего не выбрано)
         private int? SelectedDishId = null;
-        public FormDishes()
+        public FormDishes(User user)
         {
             InitializeComponent();
+            currentUser = user; // Инициализируем текущего пользователя
         }
+        private void ConfigureAccess()
+        {
+            if (currentUser.Role == "Admin")
+            {
+                // Полный доступ
+                EnableAllControls();
+            }
+            else if (currentUser.Role == "Cashier")
+            {
+                // Только просмотр блюд
+                DisableAllControlsExceptView();
+            }
+            else if (currentUser.Role == "Cook")
+            {
+                // Полный доступ к блюдам
+                EnableAllControls();
+            }
+            else if (currentUser.Role == "Client")
+            {
+                // Только просмотр блюд
+                DisableAllControlsExceptView();
+            }
+        }
+
+        private void EnableAllControls()
+        {
+            buttonAdd.Enabled = true;
+            buttonUpdate.Enabled = true;
+            buttonDelete.Enabled = true;
+        }
+
+        private void DisableAllControlsExceptView()
+        {
+            buttonAdd.Enabled = false;
+            buttonUpdate.Enabled = false;
+            buttonDelete.Enabled = false;
+        }
+
 
         // Метод, который вызывается при загрузке формы
         protected override async void OnLoad(EventArgs e)
@@ -21,6 +61,7 @@ namespace Pizza_Mia
             base.OnLoad(e); // Вызываем базовый метод загрузки формы
             db = new PizzaAppContext(); // Создаем новый экземпляр контекста базы данных
             await ShowDishesAsCardsAsync(); //загружаем и отображаем блюда на форме
+            ConfigureAccess(); // Настраиваем доступ в зависимости от роли пользователя
         }
         private async void ButtonAdd_Click(object sender, EventArgs e)
         {

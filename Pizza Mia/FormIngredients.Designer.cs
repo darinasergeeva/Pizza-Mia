@@ -122,6 +122,7 @@
             Name = "FormIngredients";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ингредиенты";
+            Load += FormIngredients_Load;
             flowLayoutPanelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewIngredients).EndInit();
             panelFill.ResumeLayout(false);

@@ -1,14 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore; // Подключаем пространство имен для работы с Entity Framework
-using Pizza_Mia.Models; // Подключаем пространство имен для моделей
+﻿using Microsoft.EntityFrameworkCore;
+using Pizza_Mia.Models; 
 
 namespace Pizza_Mia
 {
-    public partial class FormMenu : Form // Определяем класс FormMenu, который наследует от Form
+    public partial class FormMenu : Form
     {
         // Контекст для работы с базой данных
         private PizzaAppContext db;
 
-        public FormMenu() // Конструктор класса FormMenu
+        public FormMenu() 
         {
             InitializeComponent(); // Инициализируем компоненты формы
         }

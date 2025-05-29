@@ -25,7 +25,7 @@ namespace Pizza_Mia
                 {
                     Username = txtUsername.Text,
                     Email = txtEmail.Text,
-                    Role = "Клиент", // Устанавливаем роль по умолчанию как "Клиент"
+                    Role = "Client", // Устанавливаем роль по умолчанию как "Клиент"
                     Password = txtPassword.Text
                 };
 
@@ -34,7 +34,10 @@ namespace Pizza_Mia
                 db.SaveChanges(); // Сохраняем изменения в базе данных
 
                 MessageBox.Show("Регистрация успешна!");
-                new FormGeneral().ShowDialog(); // Открываем главную форму как модальную
+
+                // Передаем нового пользователя в FormGeneral
+                FormGeneral formGeneral = new FormGeneral(user);
+                formGeneral.ShowDialog(); // Открываем главную форму как модальную
                 this.Close(); // Закрываем форму регистрации после закрытия главной формы
             }
         }
