@@ -47,21 +47,21 @@ namespace Pizza_Mia
 
         private void EnableAllControls()
         {
-            buttonAdd.Enabled = true;
-            buttonUpdate.Enabled = true;
-            buttonDelete.Enabled = true;
+            buttonAdd.Visible = true;
+            buttonUpdate.Visible = true;
+            buttonDelete.Visible = true;
         }
 
         private void DisableAllControlsExceptView()
         {
-            buttonAdd.Enabled = false;
-            buttonUpdate.Enabled = false;
-            buttonDelete.Enabled = false;
+            buttonAdd.Visible = false;
+            buttonUpdate.Visible = false;
+            buttonDelete.Visible = false;
         }
         private void PartiallyEnableControls()
         {
-            buttonUpdate.Enabled = false;
-            buttonDelete.Enabled = false;
+            buttonUpdate.Visible = false;
+            buttonDelete.Visible = false;
         }
 
 

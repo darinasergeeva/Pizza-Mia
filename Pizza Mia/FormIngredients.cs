@@ -45,9 +45,9 @@ namespace Pizza_Mia
 
         private void EnableAllControls()
         {
-            buttonIngredientsAdd.Enabled = true;
-            buttonIngredientsUpdate.Enabled = true;
-            buttonIngredientsDelete.Enabled = true;
+            buttonIngredientsAdd.Visible = true;
+            buttonIngredientsUpdate.Visible = true;
+            buttonIngredientsDelete.Visible = true;
         }
         protected override void OnClosing(CancelEventArgs e)
         {

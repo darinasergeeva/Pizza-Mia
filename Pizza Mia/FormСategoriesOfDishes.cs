@@ -47,16 +47,16 @@ namespace Pizza_Mia
 
         private void EnableAllControls()
         {
-            buttonСategoriesAdd.Enabled = true;
-            buttonСategoriesUpdate.Enabled = true;
-            buttonСategoriesDelete.Enabled = true;
+            buttonСategoriesAdd.Visible = true;
+            buttonСategoriesUpdate.Visible = true;
+            buttonСategoriesDelete.Visible = true;
         }
 
         private void DisableAllControlsExceptView()
         {
-            buttonСategoriesAdd.Enabled = false;
-            buttonСategoriesUpdate.Enabled = false;
-            buttonСategoriesDelete.Enabled = false;
+            buttonСategoriesAdd.Visible = false;
+            buttonСategoriesUpdate.Visible = false;
+            buttonСategoriesDelete.Visible = false;
         }
        
         protected override void OnClosing(CancelEventArgs e)

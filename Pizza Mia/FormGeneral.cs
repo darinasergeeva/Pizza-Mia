@@ -35,38 +35,38 @@ namespace Pizza_Mia
 
         private void EnableAllControls()
         {
-            buttonDishes.Enabled = true;
-            buttonCategoriesOfDishes.Enabled = true;
-            buttonIngredients.Enabled = true;
-            buttonOrders.Enabled = true;
-            buttonUserManagement.Enabled = true;
+            buttonDishes.Visible = true;
+            buttonCategoriesOfDishes.Visible = true;
+            buttonIngredients.Visible = true;
+            buttonOrders.Visible = true;
+            buttonUserManagement.Visible = true;
         }
 
         private void PartiallyEnableControlsCashier()
         {
-            buttonDishes.Enabled = true;
-            buttonCategoriesOfDishes.Enabled = true;
-            buttonIngredients.Enabled = false;
-            buttonOrders.Enabled = true;
-            buttonUserManagement.Enabled = false;
+            buttonDishes.Visible = true;
+            buttonCategoriesOfDishes.Visible = true;
+            buttonIngredients.Visible = false;
+            buttonOrders.Visible = true;
+            buttonUserManagement.Visible = false;
         }
 
         private void PartiallyEnableControlsCook()
         {
-            buttonDishes.Enabled = true;
-            buttonCategoriesOfDishes.Enabled = true;
-            buttonIngredients.Enabled = true;
-            buttonOrders.Enabled = true;
-            buttonUserManagement.Enabled = false;
+            buttonDishes.Visible = true;
+            buttonCategoriesOfDishes.Visible = true;
+            buttonIngredients.Visible = true;
+            buttonOrders.Visible = true;
+            buttonUserManagement.Visible = false;
         }
 
         private void PartiallyEnableControlsClient()
         {
-            buttonDishes.Enabled = true;
-            buttonCategoriesOfDishes.Enabled = false;
-            buttonIngredients.Enabled = false;
-            buttonOrders.Enabled = true;
-            buttonUserManagement.Enabled = false;
+            buttonDishes.Visible = true;
+            buttonCategoriesOfDishes.Visible = false;
+            buttonIngredients.Visible = false;
+            buttonOrders.Visible = true;
+            buttonUserManagement.Visible = false;
         }
 
         private void ButtonDishes_Click(object sender, EventArgs e)
