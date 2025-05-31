@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            OrderDate = new Label();
+            LabelOrderDate = new Label();
             comboBoxNameCustomer = new ComboBox();
-            NameCustomer = new Label();
-            TotalAmount = new Label();
+            LabelNameCustomer = new Label();
+            LabelTotalAmount = new Label();
             flowLayoutPanelFill = new FlowLayoutPanel();
+            dateTimePickerOrderDate = new DateTimePicker();
             textBoxTotalAmount = new TextBox();
             labelStatus = new Label();
             textBoxStatus = new TextBox();
             flowLayoutPanelBotton = new FlowLayoutPanel();
             buttonSave = new Button();
             buttonCancel = new Button();
-            dateTimePickerOrderDate = new DateTimePicker();
             flowLayoutPanelFill.SuspendLayout();
             flowLayoutPanelBotton.SuspendLayout();
             SuspendLayout();
             // 
-            // OrderDate
+            // LabelOrderDate
             // 
-            OrderDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            OrderDate.Location = new Point(13, 10);
-            OrderDate.Name = "OrderDate";
-            OrderDate.Size = new Size(201, 29);
-            OrderDate.TabIndex = 1;
-            OrderDate.Text = "Дата заказа";
+            LabelOrderDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            LabelOrderDate.Location = new Point(13, 10);
+            LabelOrderDate.Name = "LabelOrderDate";
+            LabelOrderDate.Size = new Size(201, 29);
+            LabelOrderDate.TabIndex = 1;
+            LabelOrderDate.Text = "Дата заказа";
             // 
             // comboBoxNameCustomer
             // 
@@ -60,32 +60,32 @@
             comboBoxNameCustomer.Size = new Size(338, 33);
             comboBoxNameCustomer.TabIndex = 9;
             // 
-            // NameCustomer
+            // LabelNameCustomer
             // 
-            NameCustomer.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            NameCustomer.Location = new Point(13, 78);
-            NameCustomer.Name = "NameCustomer";
-            NameCustomer.Size = new Size(256, 29);
-            NameCustomer.TabIndex = 3;
-            NameCustomer.Text = "Клиент";
+            LabelNameCustomer.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            LabelNameCustomer.Location = new Point(13, 78);
+            LabelNameCustomer.Name = "LabelNameCustomer";
+            LabelNameCustomer.Size = new Size(256, 29);
+            LabelNameCustomer.TabIndex = 3;
+            LabelNameCustomer.Text = "Клиент";
             // 
-            // TotalAmount
+            // LabelTotalAmount
             // 
-            TotalAmount.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            TotalAmount.Location = new Point(13, 146);
-            TotalAmount.Name = "TotalAmount";
-            TotalAmount.Size = new Size(256, 26);
-            TotalAmount.TabIndex = 5;
-            TotalAmount.Text = "Стоимость";
+            LabelTotalAmount.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            LabelTotalAmount.Location = new Point(13, 146);
+            LabelTotalAmount.Name = "LabelTotalAmount";
+            LabelTotalAmount.Size = new Size(256, 26);
+            LabelTotalAmount.TabIndex = 5;
+            LabelTotalAmount.Text = "Стоимость";
             // 
             // flowLayoutPanelFill
             // 
             flowLayoutPanelFill.BackColor = Color.White;
-            flowLayoutPanelFill.Controls.Add(OrderDate);
+            flowLayoutPanelFill.Controls.Add(LabelOrderDate);
             flowLayoutPanelFill.Controls.Add(dateTimePickerOrderDate);
-            flowLayoutPanelFill.Controls.Add(NameCustomer);
+            flowLayoutPanelFill.Controls.Add(LabelNameCustomer);
             flowLayoutPanelFill.Controls.Add(comboBoxNameCustomer);
-            flowLayoutPanelFill.Controls.Add(TotalAmount);
+            flowLayoutPanelFill.Controls.Add(LabelTotalAmount);
             flowLayoutPanelFill.Controls.Add(textBoxTotalAmount);
             flowLayoutPanelFill.Controls.Add(labelStatus);
             flowLayoutPanelFill.Controls.Add(textBoxStatus);
@@ -96,6 +96,13 @@
             flowLayoutPanelFill.Padding = new Padding(10);
             flowLayoutPanelFill.Size = new Size(385, 287);
             flowLayoutPanelFill.TabIndex = 6;
+            // 
+            // dateTimePickerOrderDate
+            // 
+            dateTimePickerOrderDate.Location = new Point(13, 42);
+            dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
+            dateTimePickerOrderDate.Size = new Size(338, 33);
+            dateTimePickerOrderDate.TabIndex = 14;
             // 
             // textBoxTotalAmount
             // 
@@ -159,13 +166,6 @@
             buttonCancel.Text = "Отмена";
             buttonCancel.UseVisualStyleBackColor = false;
             // 
-            // dateTimePickerOrderDate
-            // 
-            dateTimePickerOrderDate.Location = new Point(13, 42);
-            dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
-            dateTimePickerOrderDate.Size = new Size(338, 33);
-            dateTimePickerOrderDate.TabIndex = 14;
-            // 
             // FormOrdersAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -187,10 +187,9 @@
 
         #endregion
 
-        private Label OrderDate;
-        private ComboBox comboBoxNameCustomer;
-        private Label NameCustomer;
-        private Label TotalAmount;
+        private Label LabelOrderDate;
+        private Label LabelNameCustomer;
+        private Label LabelTotalAmount;
         private FlowLayoutPanel flowLayoutPanelFill;
         public TextBox textBoxTotalAmount;
         private Label labelStatus;
@@ -198,6 +197,7 @@
         private FlowLayoutPanel flowLayoutPanelBotton;
         private Button buttonSave;
         private Button buttonCancel;
-        private DateTimePicker dateTimePickerOrderDate;
+        public DateTimePicker dateTimePickerOrderDate;
+        public ComboBox comboBoxNameCustomer;
     }
 }

@@ -7,6 +7,7 @@ namespace Pizza_Mia
     {
         private PizzaAppContext db; // Объявляем переменную для контекста базы данных
         private User currentUser; // Добавляем переменную для текущего пользователя
+        private int? SelectedOrderId = null; // ID выбранного заказа
 
         public FormOrders(User user)
         {
@@ -163,25 +164,31 @@ namespace Pizza_Mia
 
         private async void ButtonAdd_Click(object sender, EventArgs e)
         {
-            using var formAdd = new FormOrdersAdd();
+            using var formAdd = new FormOrdersAdd(); // Открываем форму добавления заказа
             if (formAdd.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
-                    var newOrder = formAdd.NewOrder;
-
-                    db.Orders.Add(newOrder);
-                    await db.SaveChangesAsync();
-
-                    await ShowOrdersAsCardsAsync(newOrder.Id);
-                    MessageBox.Show("Заказ успешно добавлен!");
+                    // Создаем новый объект заказа, заполняем его данными с формы
+                    var newOrder = new Order
+                    {
+                        IdCustomer = (await db.users.FirstOrDefaultAsync(u => u.Username == formAdd.SelectedCustomerName))?.Id ?? 0, // Присваиваем ID клиента
+                        OrderDate = formAdd.OrderDate, // Используем OrderDate как DateOnly
+                        TotalAmount = formAdd.TotalAmount, // Получаем сумму из textBox
+                        Status = formAdd.Status // Получаем статус из textBox
+                    };
+                    db.Orders.Add(newOrder); // Добавляем заказ в базу данных
+                    await db.SaveChangesAsync(); // Сохраняем изменения в базе данных
+                    await ShowOrdersAsCardsAsync(); // Обновляем отображение заказов
+                    MessageBox.Show("Новый заказ добавлен!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при добавлении заказа: {ex.Message}");
+                    
                 }
             }
         }
     }
 }
+
 
