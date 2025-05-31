@@ -40,7 +40,7 @@
             // 
             // dataGridViewUsers
             // 
-            dataGridViewUsers.BackgroundColor = Color.White;
+            dataGridViewUsers.BackgroundColor = Color.Beige;
             dataGridViewUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewUsers.Dock = DockStyle.Fill;
             dataGridViewUsers.Location = new Point(0, 0);
@@ -59,6 +59,8 @@
             // 
             // comboBoxRoles
             // 
+            comboBoxRoles.BackColor = Color.LemonChiffon;
+            comboBoxRoles.FlatStyle = FlatStyle.Popup;
             comboBoxRoles.FormattingEnabled = true;
             comboBoxRoles.Location = new Point(12, 39);
             comboBoxRoles.Name = "comboBoxRoles";
@@ -67,26 +69,31 @@
             // 
             // buttonChangeRole
             // 
+            buttonChangeRole.BackColor = Color.Bisque;
+            buttonChangeRole.FlatStyle = FlatStyle.Popup;
             buttonChangeRole.Location = new Point(12, 86);
             buttonChangeRole.Name = "buttonChangeRole";
             buttonChangeRole.Size = new Size(160, 35);
             buttonChangeRole.TabIndex = 5;
             buttonChangeRole.Text = "Изменить роль";
-            buttonChangeRole.UseVisualStyleBackColor = true;
+            buttonChangeRole.UseVisualStyleBackColor = false;
             buttonChangeRole.Click += ButtonChangeRole_Click_1;
             // 
             // buttonRefresh
             // 
+            buttonRefresh.BackColor = Color.Bisque;
+            buttonRefresh.FlatStyle = FlatStyle.Popup;
             buttonRefresh.Location = new Point(178, 86);
             buttonRefresh.Name = "buttonRefresh";
             buttonRefresh.Size = new Size(171, 35);
             buttonRefresh.TabIndex = 6;
             buttonRefresh.Text = "Обновить список";
-            buttonRefresh.UseVisualStyleBackColor = true;
+            buttonRefresh.UseVisualStyleBackColor = false;
             buttonRefresh.Click += ButtonRefresh_Click_1;
             // 
             // panelBottom
             // 
+            panelBottom.BackColor = Color.Linen;
             panelBottom.Controls.Add(labelSelectRole);
             panelBottom.Controls.Add(buttonRefresh);
             panelBottom.Controls.Add(comboBoxRoles);
