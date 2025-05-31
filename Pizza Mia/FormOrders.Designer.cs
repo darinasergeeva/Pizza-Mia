@@ -56,6 +56,7 @@
             buttonUpdate.TabIndex = 1;
             buttonUpdate.Text = "Редактировать";
             buttonUpdate.UseVisualStyleBackColor = false;
+            buttonUpdate.Click += ButtonUpdate_Click;
             // 
             // flowLayoutPanelTop
             // 

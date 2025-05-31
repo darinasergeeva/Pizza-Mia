@@ -68,32 +68,35 @@ namespace Pizza_Mia
 
         private async Task ShowOrdersAsCardsAsync(int? selectedOrderId = null)
         {
-            flowLayoutPanelOrders.Controls.Clear();
+            flowLayoutPanelOrders.Controls.Clear(); // Очищаем текущие карточки
 
             var ordersList = await db.Orders
-                .Include(o => o.Customer)
-                .OrderByDescending(o => o.OrderDate)
-                .ToListAsync();
-
-            Panel selectedPanel = null;
+                .Include(o => o.Customer) // Загружаем связанные данные о клиенте
+                .OrderByDescending(o => o.OrderDate) // Сортируем заказы по дате
+                .ToListAsync(); // Получаем список заказов
 
             foreach (var order in ordersList)
             {
-                var card = CreateOrderCard(order);
-                card.Tag = order.Id;
-
-                if (selectedOrderId.HasValue && order.Id == selectedOrderId.Value)
-                    selectedPanel = card;
-
-                flowLayoutPanelOrders.Controls.Add(card);
+                var card = CreateOrderCard(order); // Создаем карточку для каждого заказа
+                card.Tag = order.Id; // Сохраняем ID заказа в Tag
+                flowLayoutPanelOrders.Controls.Add(card); // Добавляем карточку на форму
             }
 
-            if (selectedPanel != null)
+            
+            if (selectedOrderId.HasValue)
             {
-                selectedPanel.BackColor = Color.LightBlue;
-                flowLayoutPanelOrders.ScrollControlIntoView(selectedPanel);
+                var selectedPanel = flowLayoutPanelOrders.Controls
+                    .OfType<Panel>()
+                    .FirstOrDefault(p => (int)p.Tag == selectedOrderId.Value);
+                if (selectedPanel != null)
+                {
+                    selectedPanel.BackColor = Color.LightBlue; // Выделяем цветом
+                    flowLayoutPanelOrders.ScrollControlIntoView(selectedPanel); // Прокручиваем к выбранной карточке
+                }
             }
         }
+
+
 
         private Panel CreateOrderCard(Order order) // Метод для создания карточки заказа
         {
@@ -148,8 +151,29 @@ namespace Pizza_Mia
             };
             panel.Controls.Add(statusLabel); // Добавляем Label на панель
 
+            // Добавляем обработчик события клика
+            panel.Click += (sender, e) =>
+            {
+                // Снимаем выделение с предыдущей карточки
+                if (SelectedOrderId.HasValue)
+                {
+                    var previousPanel = flowLayoutPanelOrders.Controls
+                        .OfType<Panel>()
+                        .FirstOrDefault(p => (int)p.Tag == SelectedOrderId.Value);
+                    if (previousPanel != null)
+                    {
+                        previousPanel.BackColor = Color.White; // Возвращаем цвет
+                    }
+                }
+
+                // Выделяем текущую карточку
+                SelectedOrderId = order.Id;
+                panel.BackColor = Color.LightBlue; // Выделяем цветом
+            };
+
             return panel;
         }
+
 
         private Color GetStatusColor(string status) // Метод для получения цвета в зависимости от статуса заказа
         {
@@ -172,7 +196,7 @@ namespace Pizza_Mia
                     // Создаем новый объект заказа, заполняем его данными с формы
                     var newOrder = new Order
                     {
-                        IdCustomer = (await db.users.FirstOrDefaultAsync(u => u.Username == formAdd.SelectedCustomerName))?.Id ?? 0, // Присваиваем ID клиента
+                        IdCustomer = (await db.Customers.FirstOrDefaultAsync(c => c.Name == formAdd.SelectedCustomerName))?.Id ?? 0, // Присваиваем ID клиента
                         OrderDate = formAdd.OrderDate, // Используем OrderDate как DateOnly
                         TotalAmount = formAdd.TotalAmount, // Получаем сумму из textBox
                         Status = formAdd.Status // Получаем статус из textBox
@@ -184,10 +208,60 @@ namespace Pizza_Mia
                 }
                 catch (Exception ex)
                 {
-                    
+                    MessageBox.Show($"Ошибка при добавлении заказа: {ex.Message}");
                 }
             }
         }
+
+
+        private async void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            if (SelectedOrderId == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите заказ для редактирования.");
+                return;
+            }
+
+            try
+            {
+                // Загружаем заказ из базы, включая связанные данные (например, клиента)
+                var orderToEdit = await db.Orders
+                    .Include(o => o.Customer)
+                    .FirstOrDefaultAsync(o => o.Id == SelectedOrderId.Value);
+
+                if (orderToEdit == null)
+                {
+                    MessageBox.Show("Заказ не найден.");
+                    return;
+                }
+
+                // Открываем форму редактирования, передаём заказ
+                using var formEdit = new FormOrdersAdd(orderToEdit);
+
+                if (formEdit.ShowDialog(this) == DialogResult.OK)
+                {
+                    // Обновляем свойства заказа из данных формы
+                    orderToEdit.IdCustomer = (await db.Customers.FirstOrDefaultAsync(c => c.Name == formEdit.SelectedCustomerName))?.Id ?? 0;
+                    orderToEdit.OrderDate = formEdit.OrderDate;
+                    orderToEdit.TotalAmount = formEdit.TotalAmount;
+                    orderToEdit.Status = formEdit.Status;
+
+                    await db.SaveChangesAsync(); // Сохраняем изменения
+
+                    MessageBox.Show("Заказ успешно обновлен!");
+
+                    // Обновляем отображение заказов
+                    await ShowOrdersAsCardsAsync(); // Обновляем отображение заказов
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при редактировании заказа: {ex.Message}");
+            }
+        }
+
+
+
     }
 }
 
