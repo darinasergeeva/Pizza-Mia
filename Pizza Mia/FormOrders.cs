@@ -208,7 +208,7 @@ namespace Pizza_Mia
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при добавлении заказа: {ex.Message}");
+                    
                 }
             }
         }
@@ -257,6 +257,46 @@ namespace Pizza_Mia
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при редактировании заказа: {ex.Message}");
+            }
+        }
+
+        private async void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (SelectedOrderId == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите заказ для удаления.");
+                return;
+            }
+
+            // Подтверждение удаления
+            var confirmResult = MessageBox.Show("Вы уверены, что хотите удалить этот заказ?",
+                                                 "Подтверждение удаления",
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    // Находим заказ в базе данных
+                    var orderToDelete = await db.Orders.FindAsync(SelectedOrderId.Value);
+                    if (orderToDelete != null)
+                    {
+                        db.Orders.Remove(orderToDelete); // Удаляем заказ
+                        await db.SaveChangesAsync(); // Сохраняем изменения в базе данных
+                        MessageBox.Show("Заказ успешно удален!");
+
+                        // Обновляем отображение заказов
+                        await ShowOrdersAsCardsAsync(); // Обновляем отображение заказов
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заказ не найден.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении заказа: {ex.Message}");
+                }
             }
         }
 

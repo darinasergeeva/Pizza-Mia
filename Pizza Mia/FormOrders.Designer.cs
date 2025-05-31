@@ -82,6 +82,7 @@
             buttonDelete.TabIndex = 2;
             buttonDelete.Text = "Удалить";
             buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += ButtonDelete_Click;
             // 
             // flowLayoutPanelOrders
             // 
@@ -89,14 +90,14 @@
             flowLayoutPanelOrders.Dock = DockStyle.Fill;
             flowLayoutPanelOrders.Location = new Point(0, 61);
             flowLayoutPanelOrders.Name = "flowLayoutPanelOrders";
-            flowLayoutPanelOrders.Size = new Size(1158, 719);
+            flowLayoutPanelOrders.Size = new Size(1158, 959);
             flowLayoutPanelOrders.TabIndex = 3;
             // 
             // FormOrders
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1158, 780);
+            ClientSize = new Size(1158, 1020);
             Controls.Add(flowLayoutPanelOrders);
             Controls.Add(flowLayoutPanelTop);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
