@@ -17,7 +17,6 @@ namespace Pizza_Mia
         {
             if (currentUser.Role == "Admin")
             {
-                // Полный доступ
                 EnableAllControls();
             }
             else if (currentUser.Role == "Cashier")
@@ -40,30 +39,34 @@ namespace Pizza_Mia
             buttonCategoriesOfDishes.Enabled = true;
             buttonIngredients.Enabled = true;
             buttonOrders.Enabled = true;
+            buttonUserManagement.Enabled = true;
         }
 
         private void PartiallyEnableControlsCashier()
         {
             buttonDishes.Enabled = true;
-            buttonCategoriesOfDishes.Enabled = true; 
-            buttonIngredients.Enabled = false; 
+            buttonCategoriesOfDishes.Enabled = true;
+            buttonIngredients.Enabled = false;
             buttonOrders.Enabled = true;
+            buttonUserManagement.Enabled = false;
         }
 
         private void PartiallyEnableControlsCook()
         {
             buttonDishes.Enabled = true;
-            buttonCategoriesOfDishes.Enabled = true; 
-            buttonIngredients.Enabled = true; 
+            buttonCategoriesOfDishes.Enabled = true;
+            buttonIngredients.Enabled = true;
             buttonOrders.Enabled = true;
+            buttonUserManagement.Enabled = false;
         }
 
         private void PartiallyEnableControlsClient()
         {
-            buttonDishes.Enabled = true; 
-            buttonCategoriesOfDishes.Enabled = false; 
-            buttonIngredients.Enabled = false; 
-            buttonOrders.Enabled = true; 
+            buttonDishes.Enabled = true;
+            buttonCategoriesOfDishes.Enabled = false;
+            buttonIngredients.Enabled = false;
+            buttonOrders.Enabled = true;
+            buttonUserManagement.Enabled = false;
         }
 
         private void ButtonDishes_Click(object sender, EventArgs e)
@@ -88,6 +91,12 @@ namespace Pizza_Mia
         {
             FormOrders formOrders = new FormOrders(currentUser);
             formOrders.ShowDialog();
+        }
+
+        private void ButtonUserManagement_Click(object sender, EventArgs e)
+        {
+            FormUserManagement formUserManagement = new FormUserManagement();
+            formUserManagement.ShowDialog();
         }
     }
 }

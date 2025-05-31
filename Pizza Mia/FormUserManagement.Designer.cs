@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             dataGridViewUsers = new DataGridView();
-            dataGridViewBottom = new DataGridView();
-            label1 = new Label();
             labelSelectRole = new Label();
             comboBoxRoles = new ComboBox();
             buttonChangeRole = new Button();
             buttonRefresh = new Button();
+            panelBottom = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewUsers).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewBottom).BeginInit();
+            panelBottom.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewUsers
@@ -46,32 +45,13 @@
             dataGridViewUsers.Dock = DockStyle.Fill;
             dataGridViewUsers.Location = new Point(0, 0);
             dataGridViewUsers.Name = "dataGridViewUsers";
-            dataGridViewUsers.Size = new Size(538, 654);
+            dataGridViewUsers.Size = new Size(538, 455);
             dataGridViewUsers.TabIndex = 0;
-            // 
-            // dataGridViewBottom
-            // 
-            dataGridViewBottom.BackgroundColor = Color.White;
-            dataGridViewBottom.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewBottom.Dock = DockStyle.Bottom;
-            dataGridViewBottom.Location = new Point(0, 509);
-            dataGridViewBottom.Name = "dataGridViewBottom";
-            dataGridViewBottom.Size = new Size(538, 145);
-            dataGridViewBottom.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(139, 25);
-            label1.TabIndex = 2;
-            label1.Text = "Пользователи:";
             // 
             // labelSelectRole
             // 
             labelSelectRole.AutoSize = true;
-            labelSelectRole.Location = new Point(12, 519);
+            labelSelectRole.Location = new Point(12, 11);
             labelSelectRole.Name = "labelSelectRole";
             labelSelectRole.Size = new Size(160, 25);
             labelSelectRole.TabIndex = 3;
@@ -80,60 +60,69 @@
             // comboBoxRoles
             // 
             comboBoxRoles.FormattingEnabled = true;
-            comboBoxRoles.Location = new Point(12, 547);
+            comboBoxRoles.Location = new Point(12, 39);
             comboBoxRoles.Name = "comboBoxRoles";
             comboBoxRoles.Size = new Size(210, 33);
             comboBoxRoles.TabIndex = 4;
             // 
             // buttonChangeRole
             // 
-            buttonChangeRole.Location = new Point(12, 607);
+            buttonChangeRole.Location = new Point(12, 86);
             buttonChangeRole.Name = "buttonChangeRole";
             buttonChangeRole.Size = new Size(160, 35);
             buttonChangeRole.TabIndex = 5;
             buttonChangeRole.Text = "Изменить роль";
             buttonChangeRole.UseVisualStyleBackColor = true;
+            buttonChangeRole.Click += ButtonChangeRole_Click_1;
             // 
             // buttonRefresh
             // 
-            buttonRefresh.Location = new Point(178, 607);
+            buttonRefresh.Location = new Point(178, 86);
             buttonRefresh.Name = "buttonRefresh";
             buttonRefresh.Size = new Size(171, 35);
             buttonRefresh.TabIndex = 6;
             buttonRefresh.Text = "Обновить список";
             buttonRefresh.UseVisualStyleBackColor = true;
+            buttonRefresh.Click += ButtonRefresh_Click_1;
+            // 
+            // panelBottom
+            // 
+            panelBottom.Controls.Add(labelSelectRole);
+            panelBottom.Controls.Add(buttonRefresh);
+            panelBottom.Controls.Add(comboBoxRoles);
+            panelBottom.Controls.Add(buttonChangeRole);
+            panelBottom.Dock = DockStyle.Bottom;
+            panelBottom.Location = new Point(0, 322);
+            panelBottom.Name = "panelBottom";
+            panelBottom.Size = new Size(538, 133);
+            panelBottom.TabIndex = 7;
             // 
             // FormUserManagement
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(538, 654);
-            Controls.Add(buttonRefresh);
-            Controls.Add(buttonChangeRole);
-            Controls.Add(comboBoxRoles);
-            Controls.Add(labelSelectRole);
-            Controls.Add(label1);
-            Controls.Add(dataGridViewBottom);
+            ClientSize = new Size(538, 455);
+            Controls.Add(panelBottom);
             Controls.Add(dataGridViewUsers);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "FormUserManagement";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Управление ролями пользователей";
             ((System.ComponentModel.ISupportInitialize)dataGridViewUsers).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewBottom).EndInit();
+            panelBottom.ResumeLayout(false);
+            panelBottom.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridViewUsers;
-        private DataGridView dataGridViewBottom;
-        private Label label1;
         private Label labelSelectRole;
         private ComboBox comboBoxRoles;
         private Button buttonChangeRole;
         private Button buttonRefresh;
+        private Panel panelBottom;
     }
 }

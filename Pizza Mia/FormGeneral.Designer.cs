@@ -32,6 +32,7 @@
             buttonCategoriesOfDishes = new Button();
             buttonIngredients = new Button();
             buttonOrders = new Button();
+            buttonUserManagement = new Button();
             SuspendLayout();
             // 
             // buttonDishes
@@ -86,12 +87,23 @@
             buttonOrders.UseVisualStyleBackColor = false;
             buttonOrders.Click += ButtonOrders_Click;
             // 
+            // buttonUserManagement
+            // 
+            buttonUserManagement.Location = new Point(332, 100);
+            buttonUserManagement.Name = "buttonUserManagement";
+            buttonUserManagement.Size = new Size(283, 35);
+            buttonUserManagement.TabIndex = 4;
+            buttonUserManagement.Text = "Управление пользователями";
+            buttonUserManagement.UseVisualStyleBackColor = true;
+            buttonUserManagement.Click += ButtonUserManagement_Click;
+            // 
             // FormGeneral
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.YFouxYbs8wo;
             ClientSize = new Size(627, 429);
+            Controls.Add(buttonUserManagement);
             Controls.Add(buttonOrders);
             Controls.Add(buttonIngredients);
             Controls.Add(buttonCategoriesOfDishes);
@@ -111,5 +123,6 @@
         private Button buttonCategoriesOfDishes;
         private Button buttonIngredients;
         private Button buttonOrders;
+        private Button buttonUserManagement;
     }
 }
